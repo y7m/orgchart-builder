@@ -35,6 +35,11 @@ const defaultThemes = {
         picRadius: '50%',
         picBorderWidth: '2px',
         picBorderColor: '#e2e8f0',
+        cardBgColor: '#ffffff',
+        nameFontSize: '14px',
+        titleFontSize: '11px',
+        divFontSize: '10px',
+        subFontSize: '11px',
     },
     brutalist: {
         name: 'Neo Brutalist',
@@ -69,6 +74,11 @@ const defaultThemes = {
         picRadius: '0px',
         picBorderWidth: '3px',
         picBorderColor: '#000000',
+        cardBgColor: '#ffffff',
+        nameFontSize: '14px',
+        titleFontSize: '11px',
+        divFontSize: '10px',
+        subFontSize: '11px',
     }
 };
 

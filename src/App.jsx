@@ -46,6 +46,12 @@ function App() {
     root.style.setProperty('--pic-radius', theme.picRadius);
     root.style.setProperty('--pic-border-width', theme.picBorderWidth);
     root.style.setProperty('--pic-border-color', theme.picBorderColor);
+
+    root.style.setProperty('--card-bg-color', theme.cardBgColor);
+    root.style.setProperty('--name-font-size', theme.nameFontSize);
+    root.style.setProperty('--title-font-size', theme.titleFontSize);
+    root.style.setProperty('--div-font-size', theme.divFontSize);
+    root.style.setProperty('--sub-font-size', theme.subFontSize);
   }, [theme]);
 
   // Dynamically load Google Font

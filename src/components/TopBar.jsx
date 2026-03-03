@@ -18,12 +18,13 @@ const TopBar = () => {
 
             <button
                 onClick={() => openModal('employee')}
-                style={{ ...btnStyle, backgroundColor: 'var(--input-focus)', color: '#fff' }}
+                className="btn-primary"
+                style={btnStyle}
             >+ Employee</button>
 
             <div style={{ width: '1px', backgroundColor: 'var(--card-border-color)', margin: '0 5px' }} />
 
-            <button onClick={() => openModal('export')} style={btnStyle}>Export / Share</button>
+            <button onClick={() => openModal('export')} className="btn-primary" style={btnStyle}>Export / Share</button>
 
             <div style={{ width: '1px', backgroundColor: '#e2e8f0', margin: '0 5px' }} />
             <button
@@ -36,6 +37,7 @@ const TopBar = () => {
                         localStorage.removeItem('orgchart-theme-storage');
                     }
                 }}
+                className="btn-secondary"
                 style={{ ...btnStyle, color: '#dc3545', borderColor: '#dc3545' }}
             >Reset Data</button>
         </div>

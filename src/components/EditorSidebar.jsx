@@ -77,7 +77,15 @@ const EditorSidebar = () => {
     const { verticals, divisions, openModal } = useOrgStore();
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+        const pxFields = ['cardRadius', 'cardBorderWidth', 'cardShadowX', 'cardShadowY', 'cardShadowBlur', 'cardShadowSpread',
+            'btnRadius', 'btnBorderWidth', 'btnShadowX', 'btnShadowY', 'btnShadowBlur', 'btnShadowSpread', 'picBorderWidth',
+            'nameFontSize', 'titleFontSize', 'divFontSize', 'subFontSize'];
+
+        if (pxFields.includes(name)) {
+            value = `${value}px`;
+        }
+
         updateTheme({ [name]: value });
     };
 
@@ -162,6 +170,7 @@ const EditorSidebar = () => {
 
                         <button
                             onClick={handleSaveTheme}
+                            className="btn-secondary"
                             style={{ padding: '8px', cursor: 'pointer', backgroundColor: 'var(--bg-color)', border: '1px dashed var(--font-color-sub)', borderRadius: '4px', color: 'var(--font-color)', fontSize: '12px', fontWeight: 600, fontFamily: 'var(--font-family)' }}>
                             + Save Current Theme
                         </button>
@@ -172,7 +181,7 @@ const EditorSidebar = () => {
                     <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                             <h4 style={{ margin: 0, fontSize: '12px', color: 'var(--font-color-sub)' }}>Divisions</h4>
-                            <button onClick={() => openModal('division')} style={{ fontSize: '10px', padding: '2px 8px', borderRadius: '4px', border: '1px solid var(--card-border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--font-color)', cursor: 'pointer', fontFamily: 'var(--font-family)' }}>+ Add</button>
+                            <button onClick={() => openModal('division')} className="btn-secondary" style={{ fontSize: '10px', padding: '2px 8px', borderRadius: '4px', border: '1px solid var(--card-border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--font-color)', cursor: 'pointer', fontFamily: 'var(--font-family)' }}>+ Add</button>
                         </div>
                         {divisions.map(d => (
                             <div key={d.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px', backgroundColor: 'var(--bg-color)', border: '1px solid #e2e8f0', borderRadius: '4px', marginBottom: '4px' }}>
@@ -188,7 +197,7 @@ const EditorSidebar = () => {
                     <div style={{ marginTop: '15px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                             <h4 style={{ margin: 0, fontSize: '12px', color: 'var(--font-color-sub)' }}>Verticals</h4>
-                            <button onClick={() => openModal('vertical')} style={{ fontSize: '10px', padding: '2px 8px', borderRadius: '4px', border: '1px solid var(--card-border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--font-color)', cursor: 'pointer', fontFamily: 'var(--font-family)' }}>+ Add</button>
+                            <button onClick={() => openModal('vertical')} className="btn-secondary" style={{ fontSize: '10px', padding: '2px 8px', borderRadius: '4px', border: '1px solid var(--card-border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--font-color)', cursor: 'pointer', fontFamily: 'var(--font-family)' }}>+ Add</button>
                         </div>
                         {verticals.map(v => (
                             <div key={v.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px', backgroundColor: 'var(--bg-color)', border: '1px solid #e2e8f0', borderRadius: '4px', marginBottom: '4px' }}>
@@ -274,6 +283,15 @@ const EditorSidebar = () => {
                         <NumberInput label="Shadow X Offset" name="cardShadowX" value={theme.cardShadowX} onChange={handleInputChange} min={-20} max={20} />
                         <NumberInput label="Shadow Y Offset" name="cardShadowY" value={theme.cardShadowY} onChange={handleInputChange} min={-20} max={20} />
                         <NumberInput label="Shadow Blur" name="cardShadowBlur" value={theme.cardShadowBlur} onChange={handleInputChange} min={0} max={20} />
+
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
+                            <label style={{ fontSize: '12px', color: 'var(--font-color)' }}>Card Background</label>
+                            <ColorPickerPopover color={theme.cardBgColor || theme.bgColorAlt || '#ffffff'} onChange={(hex) => updateTheme({ cardBgColor: hex })} />
+                        </div>
+                        <NumberInput label="Name Font Size" name="nameFontSize" value={theme.nameFontSize || '14px'} onChange={handleInputChange} min={8} max={36} />
+                        <NumberInput label="Title Font Size" name="titleFontSize" value={theme.titleFontSize || '11px'} onChange={handleInputChange} min={8} max={24} />
+                        <NumberInput label="Division Font Size" name="divFontSize" value={theme.divFontSize || '10px'} onChange={handleInputChange} min={8} max={20} />
+                        <NumberInput label="Subtopic Font Size" name="subFontSize" value={theme.subFontSize || '11px'} onChange={handleInputChange} min={8} max={20} />
                     </div>
                 </Accordion>
 

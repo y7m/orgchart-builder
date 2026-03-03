@@ -35,7 +35,7 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
         if (!parentVert) return null;
 
         return (
-            <div key={subId} style={{ display: 'flex', alignItems: 'flex-start', fontSize: '11px', color: 'var(--font-color)', lineHeight: 1.2, marginBottom: '4px' }}>
+            <div key={subId} style={{ display: 'flex', alignItems: 'flex-start', fontSize: 'var(--sub-font-size, 11px)', color: 'var(--font-color)', lineHeight: 1.2, marginBottom: '4px' }}>
                 <div style={{
                     width: '8px', height: '12px', borderRadius: '2px',
                     backgroundColor: parentVert.color, marginRight: '6px', flexShrink: 0,
@@ -108,7 +108,7 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
                 top: isDragging ? dragPos.y : y,
                 left: isDragging ? dragPos.x : x,
                 width: '280px',
-                backgroundColor: 'var(--bg-color-alt)',
+                backgroundColor: 'var(--card-bg-color, var(--bg-color-alt))',
                 padding: '30px 15px 15px',
                 borderRadius: 'var(--card-radius)',
                 border: `var(--card-border-width) solid ${division ? division.color : 'var(--card-border-color)'}`,
@@ -130,11 +130,11 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
                     <svg viewBox="0 0 24 24" fill="var(--font-color-sub)" width="30" height="30"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>}
             </div>
 
-            <div style={{ fontWeight: 800, fontSize: '14px', textAlign: 'center', marginBottom: '2px', color: 'var(--main-color)' }}>{emp.name}</div>
-            <div style={{ fontWeight: 600, fontSize: '11px', textAlign: 'center', marginBottom: '12px', color: 'var(--font-color-sub)', textTransform: 'uppercase' }}>{emp.title}</div>
+            <div style={{ fontWeight: 800, fontSize: 'var(--name-font-size, 14px)', textAlign: 'center', marginBottom: '2px', color: 'var(--main-color)' }}>{emp.name}</div>
+            <div style={{ fontWeight: 600, fontSize: 'var(--title-font-size, 11px)', textAlign: 'center', marginBottom: '12px', color: 'var(--font-color-sub)', textTransform: 'uppercase' }}>{emp.title}</div>
 
             {division && (
-                <div style={{ fontSize: '10px', fontWeight: 800, color: division.color, textAlign: 'center', marginBottom: '10px', padding: '2px', borderBottom: `1px solid var(--card-border-color)` }}>
+                <div style={{ fontSize: 'var(--div-font-size, 10px)', fontWeight: 800, color: division.color, textAlign: 'center', marginBottom: '10px', padding: '2px', borderBottom: `1px solid var(--card-border-color)` }}>
                     Division: {division.name}
                 </div>
             )}

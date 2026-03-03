@@ -242,8 +242,8 @@ export const ModalBase = ({ title, onClose, onSave, children }) => (
             </div>
 
             <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '20px' }}>
-                <button onClick={onClose} style={{ padding: '8px 16px', borderRadius: '4px', border: '1px solid #ccc', cursor: 'pointer' }}>Cancel</button>
-                <button onClick={onSave} style={{ padding: '8px 16px', borderRadius: '4px', border: 'none', backgroundColor: 'var(--input-focus)', color: 'white', fontWeight: 'bold', cursor: 'pointer' }}>Save</button>
+                <button onClick={onClose} className="btn-secondary" style={{ padding: '8px 16px', borderRadius: '4px', border: '1px solid var(--card-border-color)', cursor: 'pointer', backgroundColor: 'var(--bg-color)', color: 'var(--font-color)' }}>Cancel</button>
+                <button onClick={onSave} className="btn-primary" style={{ padding: '8px 16px', borderRadius: '4px', border: 'none', fontWeight: 'bold', cursor: 'pointer' }}>Save</button>
             </div>
         </div>
     </div>

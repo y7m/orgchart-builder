@@ -93,3 +93,23 @@ body.exporting .hide-on-export {
 body.exporting-transparent #canvas-container {
   background: transparent !important;
 }
+
+/* Button Hover Effects */
+.btn-primary {
+  background-color: var(--main-color) !important;
+  color: var(--bg-color-alt) !important;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--input-focus) !important;
+}
+
+.btn-secondary {
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  color: var(--input-focus) !important;
+  border-color: var(--input-focus) !important;
+}

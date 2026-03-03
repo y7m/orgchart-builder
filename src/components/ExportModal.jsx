@@ -52,13 +52,13 @@ const ExportModal = ({ onClose }) => {
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                    <button onClick={handleExportSolid} style={btnStylePrimary}>
+                    <button onClick={handleExportSolid} className="btn-primary" style={btnStylePrimary}>
                         Export PNG (Solid Background)
                     </button>
-                    <button onClick={handleExportClear} style={btnStyleSecondary}>
+                    <button onClick={handleExportClear} className="btn-secondary" style={btnStyleSecondary}>
                         Export PNG (Transparent)
                     </button>
-                    <button onClick={handleGenerateEmbed} style={btnStyleSecondary}>
+                    <button onClick={handleGenerateEmbed} className="btn-secondary" style={btnStyleSecondary}>
                         Generate Embed Snippet (iframe)
                     </button>
 
@@ -84,8 +84,6 @@ const btnStylePrimary = {
     padding: '10px 16px',
     borderRadius: '6px',
     border: 'none',
-    backgroundColor: 'var(--input-focus)',
-    color: '#fff',
     fontWeight: 'bold',
     cursor: 'pointer',
     width: '100%',
