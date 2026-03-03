@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  /* Dynamic Theme Variables - Controlled by Zustand */
+  --bg-color: #f8f9fa;
+  --bg-color-alt: #ffffff;
+  --main-color: #323232;
+  --input-focus: #2d8cf0;
+  --font-color: #333333;
+  --font-color-sub: #666666;
+
+  --card-radius: 8px;
+  --card-border-width: 1px;
+  --card-border-color: #e2e8f0;
+
+  --card-shadow-x: 0px;
+  --card-shadow-y: 4px;
+  --card-shadow-blur: 15px;
+  --card-shadow-spread: 0px;
+  --card-shadow-color: rgba(0, 0, 0, 0.05);
+
+  --btn-radius: 6px;
+  --btn-border-width: 1px;
+  --btn-border-color: transparent;
+
+  --btn-shadow-x: 0px;
+  --btn-shadow-y: 2px;
+  --btn-shadow-blur: 5px;
+  --btn-shadow-spread: 0px;
+  --btn-shadow-color: rgba(0, 0, 0, 0.1);
+
+  --font-family: 'Inter', system-ui, sans-serif;
+  --font-family-heading: 'Inter', system-ui, sans-serif;
+}
+
+/* Base Resets */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global scrollbar styling for the editor */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Forms */
+input,
+select {
+  font-family: inherit;
+  color: inherit;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--input-focus) !important;
+}
+
+/* Export Mode Overrides */
+body.exporting .hide-on-export {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body.exporting-transparent #canvas-container {
+  background: transparent !important;
+}
