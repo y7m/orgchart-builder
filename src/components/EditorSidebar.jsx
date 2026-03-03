@@ -162,7 +162,7 @@ const EditorSidebar = () => {
 
                         <button
                             onClick={handleSaveTheme}
-                            style={{ padding: '8px', cursor: 'pointer', backgroundColor: 'var(--bg-color)', border: '1px dashed var(--font-color-sub)', borderRadius: '4px', color: 'var(--font-color)', fontSize: '12px', fontWeight: 600 }}>
+                            style={{ padding: '8px', cursor: 'pointer', backgroundColor: 'var(--bg-color)', border: '1px dashed var(--font-color-sub)', borderRadius: '4px', color: 'var(--font-color)', fontSize: '12px', fontWeight: 600, fontFamily: 'var(--font-family)' }}>
                             + Save Current Theme
                         </button>
                     </div>
@@ -170,7 +170,10 @@ const EditorSidebar = () => {
 
                 <Accordion title="Manage Data">
                     <div>
-                        <h4 style={{ margin: '0 0 8px 0', fontSize: '12px', color: 'var(--font-color-sub)' }}>Divisions</h4>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                            <h4 style={{ margin: 0, fontSize: '12px', color: 'var(--font-color-sub)' }}>Divisions</h4>
+                            <button onClick={() => openModal('division')} style={{ fontSize: '10px', padding: '2px 8px', borderRadius: '4px', border: '1px solid var(--card-border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--font-color)', cursor: 'pointer', fontFamily: 'var(--font-family)' }}>+ Add</button>
+                        </div>
                         {divisions.map(d => (
                             <div key={d.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px', backgroundColor: 'var(--bg-color)', border: '1px solid #e2e8f0', borderRadius: '4px', marginBottom: '4px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: 'var(--font-color)' }}>
@@ -183,7 +186,10 @@ const EditorSidebar = () => {
                     </div>
 
                     <div style={{ marginTop: '15px' }}>
-                        <h4 style={{ margin: '0 0 8px 0', fontSize: '12px', color: 'var(--font-color-sub)' }}>Verticals</h4>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                            <h4 style={{ margin: 0, fontSize: '12px', color: 'var(--font-color-sub)' }}>Verticals</h4>
+                            <button onClick={() => openModal('vertical')} style={{ fontSize: '10px', padding: '2px 8px', borderRadius: '4px', border: '1px solid var(--card-border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--font-color)', cursor: 'pointer', fontFamily: 'var(--font-family)' }}>+ Add</button>
+                        </div>
                         {verticals.map(v => (
                             <div key={v.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px', backgroundColor: 'var(--bg-color)', border: '1px solid #e2e8f0', borderRadius: '4px', marginBottom: '4px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: 'var(--font-color)' }}>

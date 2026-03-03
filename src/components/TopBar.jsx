@@ -15,15 +15,6 @@ const TopBar = () => {
             border: `1px solid #e2e8f0`,
             boxShadow: `0 4px 6px rgba(0,0,0,0.05)`
         }}>
-            <button
-                onClick={() => openModal('division')}
-                style={btnStyle}
-            >+ Division</button>
-
-            <button
-                onClick={() => openModal('vertical')}
-                style={btnStyle}
-            >+ Vertical</button>
 
             <button
                 onClick={() => openModal('employee')}

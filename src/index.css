@@ -71,7 +71,8 @@ body {
 
 /* Forms */
 input,
-select {
+select,
+button {
   font-family: inherit;
   color: inherit;
 }

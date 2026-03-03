@@ -34,6 +34,18 @@ export const EmployeeModal = ({ onClose }) => {
     const [picUrl, setPicUrl] = useState(editingEmp?.pic || '');
     const [selectedSubtopics, setSelectedSubtopics] = useState(editingEmp?.subtopics || []);
 
+    const managerRequired = employees.length > 0 && !(editingEmp && !editingEmp.managerId);
+
+    // Auto-update division based on manager
+    React.useEffect(() => {
+        if (managerId && !editingEmp) {
+            const manager = employees.find(e => e.id === managerId);
+            if (manager && manager.divisionId) {
+                setDivisionId(manager.divisionId);
+            }
+        }
+    }, [managerId, employees, editingEmp]);
+
     // Handle file upload to base64
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -47,6 +59,13 @@ export const EmployeeModal = ({ onClose }) => {
     const handleSave = () => {
         if (!name) return alert('Name is required');
 
+        const existingRoot = employees.find(e => !e.managerId);
+        const isEditingRoot = editingEmp && !editingEmp.managerId;
+
+        if (!managerId && existingRoot && !isEditingRoot) {
+            return alert('Manager is required. Only one person can be at the top of the hierarchy.');
+        }
+
         const payload = { name, title, managerId: managerId || null, divisionId, pic: picUrl, subtopics: selectedSubtopics };
         if (editingEmp) {
             updateEmployee(editingId, payload);
@@ -59,18 +78,18 @@ export const EmployeeModal = ({ onClose }) => {
     return (
         <ModalBase title={editingEmp ? "Edit Employee" : "Add Employee"} onClose={onClose} onSave={handleSave}>
             <FormGroup label="Name">
-                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="John Doe" />
+                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Employee Name" />
             </FormGroup>
 
             <FormGroup label="Title">
-                <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Specialist" />
+                <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Role or Title" />
             </FormGroup>
 
             <FormGroup label="Profile Picture">
                 <input type="file" accept="image/*" onChange={handleFileChange} />
             </FormGroup>
 
-            <FormGroup label="Manager">
+            <FormGroup label={`Manager ${managerRequired ? '*' : ''}`}>
                 <select value={managerId} onChange={e => setManagerId(e.target.value)}>
                     <option value="">-- No Manager (Root) --</option>
                     {employees.map(e => (
@@ -143,7 +162,7 @@ export const DivisionModal = ({ onClose }) => {
     return (
         <ModalBase title={editingDiv ? "Edit Division" : "Add Division"} onClose={onClose} onSave={handleSave}>
             <FormGroup label="Division Name">
-                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Sales" />
+                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Division A" />
             </FormGroup>
             <FormGroup label="Border Theme Color">
                 <ColorPickerPopover color={color} onChange={setColor} />
@@ -188,13 +207,13 @@ export const VerticalModal = ({ onClose }) => {
     return (
         <ModalBase title={editingVert ? "Edit Vertical" : "Add Vertical"} onClose={onClose} onSave={handleSave}>
             <FormGroup label="Vertical Name">
-                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Onboarding" />
+                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Placeholder Vertical" />
             </FormGroup>
             <FormGroup label="Pill / Marker Color">
                 <ColorPickerPopover color={color} onChange={setColor} />
             </FormGroup>
             <FormGroup label="Subtopics (Comma Separated)">
-                <input type="text" value={subtopics} onChange={e => setSubtopics(e.target.value)} placeholder="e.g. New Hires, M&A, Forms" />
+                <input type="text" value={subtopics} onChange={e => setSubtopics(e.target.value)} placeholder="e.g. Topic A, Topic B, Topic C" />
             </FormGroup>
         </ModalBase>
     );
