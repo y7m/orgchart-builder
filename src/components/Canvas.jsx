@@ -107,7 +107,7 @@ const Canvas = () => {
                             source={link.source}
                             target={link.target}
                             themeType={theme.lineType}
-                            mainColor={theme.mainColor}
+                            mainColor={theme.lineColor || theme.mainColor}
                         />
                     ))}
                 </svg>

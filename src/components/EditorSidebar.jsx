@@ -83,7 +83,10 @@ const EditorSidebar = () => {
 
     const handleSaveTheme = () => {
         const name = prompt("Enter a name for this Custom Theme Preset:");
-        if (name) saveCustomTheme(name);
+        if (name) {
+            saveCustomTheme(name);
+            alert(`Theme '${name}' saved successfully!`);
+        }
     }
 
     return (
@@ -226,6 +229,29 @@ const EditorSidebar = () => {
                             <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--font-color)' }}>Font Primary</label>
                             <ColorPickerPopover color={theme.fontColor} onChange={(hex) => updateTheme({ fontColor: hex })} />
                         </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--font-color)' }}>Line Color</label>
+                            <ColorPickerPopover color={theme.lineColor || theme.mainColor || '#000'} onChange={(hex) => updateTheme({ lineColor: hex })} />
+                        </div>
+                        <div>
+                            <label style={{ fontSize: '12px', fontWeight: 600, display: 'block', marginBottom: '5px', color: 'var(--font-color)' }}>Font Family</label>
+                            <select
+                                name="fontFamily"
+                                value={theme.fontFamily}
+                                onChange={handleInputChange}
+                                style={{
+                                    width: '100%', padding: '8px',
+                                    border: `1px solid var(--card-border-color)`,
+                                    borderRadius: '4px',
+                                    backgroundColor: 'var(--bg-color)', color: 'var(--font-color)'
+                                }}
+                            >
+                                <option value="'Inter', sans-serif">Inter</option>
+                                <option value="'Roboto', sans-serif">Roboto</option>
+                                <option value="'Space Mono', monospace">Space Mono</option>
+                                <option value="'Playfair Display', serif">Playfair Display</option>
+                            </select>
+                        </div>
                     </div>
                 </Accordion>
 
@@ -242,6 +268,17 @@ const EditorSidebar = () => {
                         <NumberInput label="Shadow X Offset" name="cardShadowX" value={theme.cardShadowX} onChange={handleInputChange} min={-20} max={20} />
                         <NumberInput label="Shadow Y Offset" name="cardShadowY" value={theme.cardShadowY} onChange={handleInputChange} min={-20} max={20} />
                         <NumberInput label="Shadow Blur" name="cardShadowBlur" value={theme.cardShadowBlur} onChange={handleInputChange} min={0} max={20} />
+                    </div>
+                </Accordion>
+
+                <Accordion title="Portrait Aesthetics">
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        <NumberInput label="Picture Radius" name="picRadius" value={theme.picRadius || '50%'} onChange={handleInputChange} min={0} max={100} />
+                        <NumberInput label="Picture Border Width" name="picBorderWidth" value={theme.picBorderWidth || '2px'} onChange={handleInputChange} min={0} max={20} />
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <label style={{ fontSize: '12px', color: 'var(--font-color)' }}>Border Color</label>
+                            <ColorPickerPopover color={theme.picBorderColor || '#e2e8f0'} onChange={(hex) => updateTheme({ picBorderColor: hex })} />
+                        </div>
                     </div>
                 </Accordion>
                 <div style={{ height: '30px' }} />

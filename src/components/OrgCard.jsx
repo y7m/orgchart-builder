@@ -122,8 +122,8 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
         >
             <div style={{
                 position: 'absolute', top: '-25px', left: 'calc(50% - 25px)',
-                width: '50px', height: '50px', borderRadius: '50%',
-                backgroundColor: 'var(--bg-color)', border: `2px solid var(--card-border-color)`,
+                width: '50px', height: '50px', borderRadius: 'var(--pic-radius)',
+                backgroundColor: 'var(--bg-color)', border: `var(--pic-border-width) solid var(--pic-border-color)`,
                 display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden'
             }}>
                 {emp.pic ? <img src={emp.pic} alt={emp.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> :

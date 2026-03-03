@@ -5,6 +5,7 @@ import EditorSidebar from './components/EditorSidebar';
 import Canvas from './components/Canvas';
 import TopBar from './components/TopBar';
 import { EmployeeModal, DivisionModal, VerticalModal } from './components/Modals';
+import ExportModal from './components/ExportModal';
 import * as htmlToImage from 'html-to-image';
 import { useState } from 'react';
 
@@ -40,7 +41,28 @@ function App() {
     root.style.setProperty('--btn-shadow-blur', theme.btnShadowBlur);
     root.style.setProperty('--btn-shadow-spread', theme.btnShadowSpread);
     root.style.setProperty('--btn-shadow-color', theme.btnShadowColor);
+
+    root.style.setProperty('--line-color', theme.lineColor);
+    root.style.setProperty('--pic-radius', theme.picRadius);
+    root.style.setProperty('--pic-border-width', theme.picBorderWidth);
+    root.style.setProperty('--pic-border-color', theme.picBorderColor);
   }, [theme]);
+
+  // Dynamically load Google Font
+  useEffect(() => {
+    const fontName = theme.fontFamily.split(',')[0].replace(/['"]/g, '').trim();
+    if (fontName) {
+      const linkId = 'dynamic-google-font';
+      let linkEl = document.getElementById(linkId);
+      if (!linkEl) {
+        linkEl = document.createElement('link');
+        linkEl.id = linkId;
+        linkEl.rel = 'stylesheet';
+        document.head.appendChild(linkEl);
+      }
+      linkEl.href = `https://fonts.googleapis.com/css2?family=${fontName.replace(/ /g, '+')}:wght@400;600;800&display=swap`;
+    }
+  }, [theme.fontFamily]);
 
   // Bind Export Logic globally so the TopBar can trigger it easily
   useEffect(() => {
@@ -114,6 +136,7 @@ function App() {
       {activeModal === 'employee' && <EmployeeModal onClose={closeModal} />}
       {activeModal === 'division' && <DivisionModal onClose={closeModal} />}
       {activeModal === 'vertical' && <VerticalModal onClose={closeModal} />}
+      {activeModal === 'export' && <ExportModal onClose={closeModal} />}
 
       <Canvas />
       <EditorSidebar />

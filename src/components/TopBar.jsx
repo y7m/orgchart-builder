@@ -1,14 +1,10 @@
 import React from 'react';
 import { useOrgStore } from '../store/useOrgStore';
+import { useThemeStore } from '../store/useThemeStore';
 
 const TopBar = () => {
     const { resetToDefault, openModal } = useOrgStore();
-
-    const handleExport = (transparent) => {
-        // This will trigger the html-to-image library we installed earlier
-        // Attached to a global export function we will write in App.js or similar
-        if (window.exportChart) window.exportChart(transparent);
-    };
+    const { resetTheme } = useThemeStore();
 
     return (
         <div style={{
@@ -36,12 +32,18 @@ const TopBar = () => {
 
             <div style={{ width: '1px', backgroundColor: 'var(--card-border-color)', margin: '0 5px' }} />
 
-            <button onClick={() => handleExport(false)} style={btnStyle}>Export (Solid)</button>
-            <button onClick={() => handleExport(true)} style={btnStyle}>Export (Clear)</button>
+            <button onClick={() => openModal('export')} style={btnStyle}>Export / Share</button>
+
             <div style={{ width: '1px', backgroundColor: '#e2e8f0', margin: '0 5px' }} />
             <button
                 onClick={() => {
-                    if (window.confirm('Reset all custom data?')) resetToDefault();
+                    if (window.confirm('Reset all custom data?')) {
+                        resetToDefault();
+                        resetTheme();
+                        // For fully clearing persist cache just in case
+                        localStorage.removeItem('orgchart-data-storage');
+                        localStorage.removeItem('orgchart-theme-storage');
+                    }
                 }}
                 style={{ ...btnStyle, color: '#dc3545', borderColor: '#dc3545' }}
             >Reset Data</button>

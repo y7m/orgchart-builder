@@ -31,6 +31,10 @@ const defaultThemes = {
 
         fontFamily: "'Inter', sans-serif",
         lineType: 'curve', // curve, elbow, straight
+        lineColor: '#94a3b8',
+        picRadius: '50%',
+        picBorderWidth: '2px',
+        picBorderColor: '#e2e8f0',
     },
     brutalist: {
         name: 'Neo Brutalist',
@@ -61,6 +65,10 @@ const defaultThemes = {
 
         fontFamily: "'Space Mono', monospace",
         lineType: 'elbow',
+        lineColor: '#000000',
+        picRadius: '0px',
+        picBorderWidth: '3px',
+        picBorderColor: '#000000',
     }
 };
 
