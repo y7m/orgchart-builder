@@ -15,17 +15,19 @@ const ColorPickerPopover = ({ color, onChange }) => {
                 <span style={{ fontSize: '12px', fontFamily: 'monospace', color: 'var(--font-color)' }}>{color}</span>
             </div>
             {isOpen && (
-                <div style={{ position: 'absolute', zIndex: 9999, right: 0, marginTop: '10px' }}>
-                    <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, left: 0 }} onClick={() => setIsOpen(false)} />
-                    <SketchPicker color={color} onChange={c => onChange(c.hex)} disableAlpha />
+                <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, left: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'rgba(0,0,0,0.3)', backdropFilter: 'blur(2px)' }} onClick={() => setIsOpen(false)} />
+                    <div style={{ position: 'relative', zIndex: 10000 }}>
+                        <SketchPicker color={color} onChange={c => onChange(c.hex)} disableAlpha />
+                    </div>
                 </div>
             )}
         </div>
     );
 };
 
-const NumberInput = ({ label, name, value, onChange, min = -20, max = 20 }) => {
-    // Strip "px" for viewing, but keep it for saving
+const NumberInput = ({ label, name, value, onChange, min = -20, max = 20, unit = 'px' }) => {
+    // Strip unit for viewing, but keep it for saving
     const numValue = parseInt(value, 10) || 0;
 
     const handleChange = (e) => {
@@ -33,7 +35,7 @@ const NumberInput = ({ label, name, value, onChange, min = -20, max = 20 }) => {
         if (isNaN(val)) val = 0;
         if (val < min) val = min;
         if (val > max) val = max;
-        onChange({ target: { name, value: `${val}px` } });
+        onChange({ target: { name, value: unit ? `${val}${unit}` : val } });
     };
 
     return (
@@ -46,7 +48,7 @@ const NumberInput = ({ label, name, value, onChange, min = -20, max = 20 }) => {
                     onChange={handleChange}
                     style={{ flex: 1, padding: '6px', border: '1px solid #ccc', borderRadius: '4px', backgroundColor: 'var(--bg-color)', color: 'var(--font-color)' }}
                 />
-                <span style={{ fontSize: '12px', color: 'var(--font-color-sub)' }}>px</span>
+                <span style={{ fontSize: '12px', color: 'var(--font-color-sub)' }}>{unit}</span>
             </div>
         </div>
     );
@@ -77,24 +79,12 @@ const EditorSidebar = () => {
     const { verticals, divisions, openModal } = useOrgStore();
 
     const handleInputChange = (e) => {
-        let { name, value } = e.target;
-        const pxFields = ['cardRadius', 'cardBorderWidth', 'cardShadowX', 'cardShadowY', 'cardShadowBlur', 'cardShadowSpread',
-            'btnRadius', 'btnBorderWidth', 'btnShadowX', 'btnShadowY', 'btnShadowBlur', 'btnShadowSpread', 'picBorderWidth',
-            'nameFontSize', 'titleFontSize', 'divFontSize', 'subFontSize'];
-
-        if (pxFields.includes(name)) {
-            value = `${value}px`;
-        }
-
+        const { name, value } = e.target;
         updateTheme({ [name]: value });
     };
 
     const handleSaveTheme = () => {
-        const name = prompt("Enter a name for this Custom Theme Preset:");
-        if (name) {
-            saveCustomTheme(name);
-            alert(`Theme '${name}' saved successfully!`);
-        }
+        openModal('promptTheme');
     }
 
     return (
@@ -177,7 +167,7 @@ const EditorSidebar = () => {
                     </div>
                 </Accordion>
 
-                <Accordion title="Manage Data">
+                <Accordion title="Manage Details">
                     <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                             <h4 style={{ margin: 0, fontSize: '12px', color: 'var(--font-color-sub)' }}>Divisions</h4>
@@ -211,7 +201,7 @@ const EditorSidebar = () => {
                     </div>
                 </Accordion>
 
-                <Accordion title="Environment Canvas">
+                <Accordion title="Environment">
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                         <div>
                             <label style={{ fontSize: '12px', fontWeight: 600, display: 'block', marginBottom: '5px', color: 'var(--font-color)' }}>Line Type</label>
@@ -270,7 +260,7 @@ const EditorSidebar = () => {
                     </div>
                 </Accordion>
 
-                <Accordion title="Card Aesthetics">
+                <Accordion title="Card">
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <NumberInput label="Border Radius" name="cardRadius" value={theme.cardRadius} onChange={handleInputChange} min={0} max={20} />
                         <NumberInput label="Border Width" name="cardBorderWidth" value={theme.cardBorderWidth} onChange={handleInputChange} min={0} max={20} />
@@ -295,10 +285,10 @@ const EditorSidebar = () => {
                     </div>
                 </Accordion>
 
-                <Accordion title="Portrait Aesthetics">
+                <Accordion title="Portrait">
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        <NumberInput label="Picture Radius" name="picRadius" value={theme.picRadius || '50%'} onChange={handleInputChange} min={0} max={100} />
-                        <NumberInput label="Picture Border Width" name="picBorderWidth" value={theme.picBorderWidth || '2px'} onChange={handleInputChange} min={0} max={20} />
+                        <NumberInput label="Picture Radius" name="picRadius" value={theme.picRadius || '50%'} onChange={handleInputChange} min={0} max={100} unit="%" />
+                        <NumberInput label="Picture Border Width" name="picBorderWidth" value={theme.picBorderWidth || '2px'} onChange={handleInputChange} min={0} max={20} unit="px" />
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <label style={{ fontSize: '12px', color: 'var(--font-color)' }}>Border Color</label>
                             <ColorPickerPopover color={theme.picBorderColor || '#e2e8f0'} onChange={(hex) => updateTheme({ picBorderColor: hex })} />

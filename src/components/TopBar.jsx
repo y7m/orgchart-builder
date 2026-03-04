@@ -28,15 +28,7 @@ const TopBar = () => {
 
             <div style={{ width: '1px', backgroundColor: '#e2e8f0', margin: '0 5px' }} />
             <button
-                onClick={() => {
-                    if (window.confirm('Reset all custom data?')) {
-                        resetToDefault();
-                        resetTheme();
-                        // For fully clearing persist cache just in case
-                        localStorage.removeItem('orgchart-data-storage');
-                        localStorage.removeItem('orgchart-theme-storage');
-                    }
-                }}
+                onClick={() => openModal('confirmReset')}
                 className="btn-secondary"
                 style={{ ...btnStyle, color: '#dc3545', borderColor: '#dc3545' }}
             >Reset Data</button>

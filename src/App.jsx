@@ -4,7 +4,7 @@ import { useOrgStore } from './store/useOrgStore';
 import EditorSidebar from './components/EditorSidebar';
 import Canvas from './components/Canvas';
 import TopBar from './components/TopBar';
-import { EmployeeModal, DivisionModal, VerticalModal } from './components/Modals';
+import { EmployeeModal, DivisionModal, VerticalModal, ConfirmModal, PromptModal } from './components/Modals';
 import ExportModal from './components/ExportModal';
 import * as htmlToImage from 'html-to-image';
 import { useState } from 'react';
@@ -127,7 +127,6 @@ function App() {
 
       } catch (err) {
         console.error("Export failed", err);
-        alert("Failed to export image.");
       } finally {
         document.body.classList.remove('exporting');
         document.body.classList.remove('exporting-transparent');
@@ -143,6 +142,11 @@ function App() {
       {activeModal === 'division' && <DivisionModal onClose={closeModal} />}
       {activeModal === 'vertical' && <VerticalModal onClose={closeModal} />}
       {activeModal === 'export' && <ExportModal onClose={closeModal} />}
+
+      {activeModal === 'promptTheme' && <PromptModal title="Save Custom Theme" placeholder="e.g. My Cool Theme" onClose={closeModal} onConfirm={(name) => { useThemeStore.getState().saveCustomTheme(name); closeModal(); }} />}
+      {activeModal === 'confirmReset' && <ConfirmModal title="Reset Data" message="Are you sure you want to reset all data and themes? This cannot be undone." isDestructive={true} onClose={closeModal} onConfirm={() => { useOrgStore.getState().resetToDefault(); useThemeStore.getState().resetTheme(); localStorage.removeItem('orgchart-data-storage'); localStorage.removeItem('orgchart-theme-storage'); closeModal(); }} />}
+      {activeModal === 'confirmDeleteDiv' && <ConfirmModal title="Delete Division" message="Are you sure you want to delete this division?" isDestructive={true} onClose={closeModal} onConfirm={() => { useOrgStore.getState().deleteDivision(useOrgStore.getState().editingId); closeModal(); }} />}
+      {activeModal === 'confirmDeleteVert' && <ConfirmModal title="Delete Vertical" message="Are you sure you want to delete this vertical?" isDestructive={true} onClose={closeModal} onConfirm={() => { useOrgStore.getState().deleteVertical(useOrgStore.getState().editingId); closeModal(); }} />}
 
       <Canvas />
       <EditorSidebar />
