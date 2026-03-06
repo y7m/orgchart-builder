@@ -99,6 +99,118 @@ export const useOrgStore = create(
             addDivision: (div) => set((state) => ({ divisions: [...state.divisions, { ...div, id: generateId('d') }] })),
             updateDivision: (id, updates) => set((state) => ({ divisions: state.divisions.map(d => d.id === id ? { ...d, ...updates } : d) })),
             deleteDivision: (id) => set((state) => ({ divisions: state.divisions.filter(d => d.id !== id) })),
+
+            // Mass Import Logic
+            massImportEmployees: (importedList) => {
+                const state = get();
+                let nextEmployees = [...state.employees];
+                let nextDivisions = [...state.divisions];
+                let nextVerticals = [...state.verticals];
+
+                const existingRoot = nextEmployees.find(e => !e.managerId);
+                const mappingDict = {}; // lookup by extId or Name
+
+                // Pre-populate mapping with existing employees
+                nextEmployees.forEach(e => {
+                    mappingDict[e.name.trim().toLowerCase()] = e.id;
+                    if (e.extId) mappingDict[e.extId] = e.id;
+                });
+
+                // Phase 1: Generate Internal IDs and Map Entities
+                const newRecords = importedList.map(row => {
+                    const internalId = generateId('e');
+                    const normalizedName = (row.name || '').trim();
+
+                    if (row.extId) mappingDict[row.extId] = internalId;
+                    if (normalizedName) mappingDict[normalizedName.toLowerCase()] = internalId;
+
+                    return { ...row, internalId, normalizedName };
+                });
+
+                // Phase 2: Process Divisions and Verticals, then create Employee objects
+                newRecords.forEach(row => {
+                    // 1. Division Mapping
+                    let resolvedDivisionId = null;
+                    if (row.division) {
+                        const divName = row.division.trim();
+                        let existingDiv = nextDivisions.find(d => d.name.toLowerCase() === divName.toLowerCase());
+                        if (!existingDiv) {
+                            existingDiv = { id: generateId('d'), name: divName, color: '#94a3b8' }; // Default generic color
+                            nextDivisions.push(existingDiv);
+                        }
+                        resolvedDivisionId = existingDiv.id;
+                    }
+
+                    // 2. Verticals/Subtopics Mapping
+                    let resolvedSubtopics = [];
+                    if (row.subtopics) {
+                        const topics = row.subtopics.split(',').map(t => t.trim()).filter(Boolean);
+                        topics.forEach(tName => {
+                            // Find any vertical that has a subtopic matching this name exactly
+                            let foundId = null;
+                            for (let v of nextVerticals) {
+                                const match = v.subtopics.find(s => s.text.toLowerCase() === tName.toLowerCase());
+                                if (match) {
+                                    foundId = match.id;
+                                    break;
+                                }
+                            }
+                            if (!foundId) {
+                                // Missing: Put it in a generic "Imported Terms" vertical
+                                let fallbackVert = nextVerticals.find(v => v.name === 'Imported Tags');
+                                if (!fallbackVert) {
+                                    fallbackVert = { id: generateId('v'), name: 'Imported Tags', color: '#64748b', subtopics: [] };
+                                    nextVerticals.push(fallbackVert);
+                                }
+                                const newSubId = generateId('s');
+                                fallbackVert.subtopics.push({ id: newSubId, text: tName });
+                                foundId = newSubId;
+                            }
+                            resolvedSubtopics.push(foundId);
+                        });
+                    }
+
+                    // 3. Manager Mapping
+                    let resolvedManagerId = null;
+                    if (row.manager) {
+                        // Could be an extId or a Name
+                        const mgrKey = String(row.manager).trim().toLowerCase();
+                        if (mappingDict[mgrKey]) {
+                            resolvedManagerId = mappingDict[mgrKey];
+                        }
+                    }
+
+                    // Fallback to root (if someone existing is root) when no manager resolved, unless this person themselves is meant to be root
+                    // For logic simplicity: if there's already a root, force everyone else to have a manager. We point them to root.
+                    if (!resolvedManagerId && existingRoot) {
+                        resolvedManagerId = existingRoot.id;
+                    }
+
+                    const newEmployeeEntity = {
+                        id: row.internalId,
+                        extId: row.extId || null,
+                        name: row.normalizedName || 'Unknown Employee',
+                        title: (row.title || '').trim(),
+                        managerId: resolvedManagerId,
+                        divisionId: resolvedDivisionId,
+                        pic: '',
+                        subtopics: resolvedSubtopics
+                    };
+                    nextEmployees.push(newEmployeeEntity);
+                });
+
+                // Phase 3: Cycle Prevention Sweep
+                // It is possible the user imported circular managers. Walk and break them by forcing them to root.
+                nextEmployees = nextEmployees.map(emp => {
+                    if (emp.managerId && formsCycle(nextEmployees, emp.managerId, emp.id)) {
+                        console.warn(`Cycle broken for ${emp.name} during mass import.`);
+                        return { ...emp, managerId: existingRoot ? existingRoot.id : null };
+                    }
+                    return emp;
+                });
+
+                set({ employees: nextEmployees, divisions: nextDivisions, verticals: nextVerticals });
+            }
         }),
         {
             name: 'orgchart-data-storage', // Saves to localStorage

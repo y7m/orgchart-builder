@@ -6,6 +6,7 @@ import Canvas from './components/Canvas';
 import TopBar from './components/TopBar';
 import { EmployeeModal, DivisionModal, VerticalModal, ConfirmModal, PromptModal } from './components/Modals';
 import ExportModal from './components/ExportModal';
+import ImportModal from './components/ImportModal';
 import * as htmlToImage from 'html-to-image';
 import { useState } from 'react';
 
@@ -142,6 +143,7 @@ function App() {
       {activeModal === 'division' && <DivisionModal onClose={closeModal} />}
       {activeModal === 'vertical' && <VerticalModal onClose={closeModal} />}
       {activeModal === 'export' && <ExportModal onClose={closeModal} />}
+      {activeModal === 'import' && <ImportModal onClose={closeModal} />}
 
       {activeModal === 'promptTheme' && <PromptModal title="Save Custom Theme" placeholder="e.g. My Cool Theme" onClose={closeModal} onConfirm={(name) => { useThemeStore.getState().saveCustomTheme(name); closeModal(); }} />}
       {activeModal === 'confirmReset' && <ConfirmModal title="Reset Data" message="Are you sure you want to reset all data and themes? This cannot be undone." isDestructive={true} onClose={closeModal} onConfirm={() => { useOrgStore.getState().resetToDefault(); useThemeStore.getState().resetTheme(); localStorage.removeItem('orgchart-data-storage'); localStorage.removeItem('orgchart-theme-storage'); closeModal(); }} />}

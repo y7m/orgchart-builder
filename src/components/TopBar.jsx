@@ -24,6 +24,10 @@ const TopBar = () => {
 
             <div style={{ width: '1px', backgroundColor: 'var(--card-border-color)', margin: '0 5px' }} />
 
+            <button onClick={() => openModal('import')} className="btn-secondary" style={btnStyle}>Import Data</button>
+
+            <div style={{ width: '1px', backgroundColor: 'var(--card-border-color)', margin: '0 5px' }} />
+
             <button onClick={() => openModal('export')} className="btn-primary" style={btnStyle}>Export / Share</button>
 
             <div style={{ width: '1px', backgroundColor: '#e2e8f0', margin: '0 5px' }} />
