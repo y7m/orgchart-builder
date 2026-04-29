@@ -4,14 +4,14 @@ A purely client-side, performant React application for building, customizing, an
 
 ## Features
 
-- **Dynamic Interactive Canvas**: Middle-mouse panning to navigate the hierarchy smoothly.
 - **Card-Level Drag & Drop**: Easily reorganize your hierarchy by dragging and dropping employee cards onto their new managers. Built-in cycle detection prevents infinite loops.
 - **Sub-tree Collapsing**: Click the `+/-` toggle on any manager card to prune their descendents from the view, allowing for cleaner high-level chart views.
 - **Live Theme Editor**: Customize the aesthetics of the chart in real-time. Change border radiuses, shadows, padding, colors, and the curvature of the connecting lines (Bezier curve, Orthogonal elbow, or straight lines).
 - **Custom Presets**: Save your styling combinations as Custom Themes in local storage to instantly switch between aesthetics without losing your design.
 - **High-Resolution Export**: Generate full-quality, unclipped PNGs of your orgchart with a single click, automatically adjusting bounding boxes to capture out-of-bounds nodes.
+- **Dynamic Interactive Canvas**: Middle-mouse panning to navigate the hierarchy smoothly.
 
-## Technologies Used
+## Stack
 
 - **React:** Component architecture for robust UI elements and forms.
 - **Vite:** Blazing fast build tool and dev server.
@@ -21,24 +21,12 @@ A purely client-side, performant React application for building, customizing, an
 
 ## Development Setup
 
-1. Make sure you have Node.js installed.
-2. Clone the repository and navigate to the `orgchart-builder` directory.
-3. Install dependencies:
+1. Clone the repository and navigate to the `orgchart-builder` directory.
+2. Install dependencies:
    ```bash
    npm install
    ```
-4. Start the development server:
+3. Start the development server:
    ```bash
    npm run dev
    ```
-
-## Production Build & Deployment
-
-Because this project uses Vite, it works perfectly for static hosting like GitHub Pages. 
-
-Run the build command:
-```bash
-npm run build
-```
-
-This will produce a `dist/` directory containing the optimized static assets. Simply upload the contents of the `dist/` directory to the server or branch serving your GitHub Pages.
