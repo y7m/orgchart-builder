@@ -17,6 +17,7 @@ export class SourceLoadError extends Error {
 
 /** AADSTS codes meaning the app lacks (admin) consent for the requested scopes. */
 const CONSENT_CODES = ['AADSTS65001', 'AADSTS90094', 'AADSTS90008', 'AADSTS65004', 'AADSTS900941'];
+const CONSENT_ERRNO = new Set(CONSENT_CODES.map((c) => c.slice('AADSTS'.length)));
 
 const text = (e: unknown): string => {
   if (!e || typeof e !== 'object') return String(e ?? '');
@@ -32,8 +33,12 @@ export const classifyError = (e: unknown): SourceError => {
   if (e instanceof SourceLoadError) return { kind: e.kind, message: e.message };
   const t = text(e);
   const code = (e && typeof e === 'object' ? (e as { errorCode?: unknown }).errorCode : undefined) as string | undefined;
+  const errorNo = (e && typeof e === 'object' ? (e as { errorNo?: unknown }).errorNo : undefined);
   let kind: SourceErrorKind = 'unknown';
-  if (CONSENT_CODES.some((c) => t.includes(c)) || code === 'consent_required' || /admin (consent|approval)/i.test(t)) kind = 'consent';
+  if (
+    CONSENT_CODES.some((c) => t.includes(c)) || (typeof errorNo === 'string' && CONSENT_ERRNO.has(errorNo)) ||
+    code === 'consent_required' || /admin (consent|approval)/i.test(t)
+  ) kind = 'consent';
   else if (code === 'no_network_connectivity' || code === 'endpoints_resolution_error' || e instanceof TypeError) kind = 'network';
   else if (code === 'timed_out' || code === 'monitor_window_timeout' || code === 'token_renewal_error') kind = 'timeout';
   else if (
