@@ -65,23 +65,23 @@ describe('useOrgStore', () => {
     expect(store.getState().employees.map((x) => x.name)).toEqual(['CEO 2']);
   });
 
-  it('persists v1 without UI state', async () => {
+  it('persists v2: only divisions/verticals, no people or UI state', async () => {
     const store = await loadStore();
     store.getState().openModal('employee', 'e1');
     store.getState().toggleCollapseNode('e1');
+    store.getState().addDivision({ name: 'Ops', color: '#000' });
     const saved = JSON.parse(localStorage.getItem('orgchart-data-storage')!);
-    expect(saved.version).toBe(1);
-    expect(saved.state.activeModal).toBeUndefined();
-    expect(saved.state.editingId).toBeUndefined();
-    expect(saved.state.collapsedNodes).toEqual(['e1']);
+    expect(saved.version).toBe(2);
+    expect(Object.keys(saved.state).sort()).toEqual(['divisions', 'verticals']);
+    expect(saved.state.divisions.map((d: { name: string }) => d.name)).toContain('Ops');
   });
 
-  it('migrates v0 state to v1', async () => {
+  it('migrates v0/v1 storage: people kept in memory for this session, purged from storage', async () => {
     localStorage.setItem('orgchart-data-storage', JSON.stringify({
       version: 0,
       state: {
         employees: [
-          { id: 'e1', name: 'Boss', title: 'CEO', managerId: null, divisionId: '', pic: '', subtopics: [] },
+          { id: 'e1', name: 'Boss', title: 'CEO', managerId: null, divisionId: '', pic: '', subtopics: [], email: 'boss@corp.test' },
           { id: 'e2', name: 'Loop', title: '', managerId: 'e3', divisionId: 'd1', subtopics: ['s'] },
           { id: 'e3', name: 'Loop2', title: '', managerId: 'e2', divisionId: 'd1' },
         ],
@@ -99,6 +99,29 @@ describe('useOrgStore', () => {
     expect(s.employees.find((x) => x.id === 'e3')!.subtopics).toEqual([]);
     expect(s.employees.filter((x) => !x.managerId).length).toBe(2); // cycle broken
     expect(s.collapsedNodes).toEqual(['e1']);
-    expect(JSON.parse(localStorage.getItem('orgchart-data-storage')!).version).toBe(1);
+    expect(s.divisions).toEqual([{ id: 'd1', name: 'D', color: '#fff' }]);
+    const raw = localStorage.getItem('orgchart-data-storage')!;
+    expect(JSON.parse(raw).version).toBe(2);
+    expect(JSON.parse(raw).state.employees).toBeUndefined();
+    expect(raw).not.toMatch(/Boss|boss@corp|Loop/);
+    const { useSourceStore } = await import('../src/store/useSourceStore');
+    expect(useSourceStore.getState().notice?.text).toMatch(/no longer kept in browser storage/);
+  });
+
+  it('v1 storage without employees migrates cleanly', async () => {
+    localStorage.setItem('orgchart-data-storage', JSON.stringify({
+      version: 1, state: { employees: [], divisions: [], verticals: [], collapsedNodes: [] },
+    }));
+    const store = await loadStore();
+    expect(store.getState().employees.length).toBeGreaterThan(0); // demo data
+    expect(JSON.parse(localStorage.getItem('orgchart-data-storage')!).state.employees).toBeUndefined();
+  });
+
+  it('editing an Entra person records an overlay (memory only)', async () => {
+    const store = await loadStore();
+    store.setState({ employees: [e('a', null, { source: 'entra' }), e('b', 'a', { source: 'entra' })], overlays: {} });
+    expect(store.getState().updateEmployee('b', { title: 'Lead', managerId: null }).ok).toBe(true);
+    expect(store.getState().overlays).toEqual({ b: { title: 'Lead', managerId: null } });
+    expect(localStorage.getItem('orgchart-data-storage')).not.toMatch(/Lead/);
   });
 });

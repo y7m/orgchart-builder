@@ -1,3 +1,10 @@
+/** Where people data came from. */
+export type SourceId = 'entra' | 'csv' | 'file' | 'demo';
+
+/**
+ * A person. Held in memory only (never in browser storage); saved only to an
+ * explicit project file.
+ */
 export interface Employee {
   id: string;
   extId?: string;
@@ -5,11 +12,24 @@ export interface Employee {
   title: string;
   managerId: string | null;
   divisionId: string | null;
+  /** User-supplied picture (data URL). */
   pic?: string;
   subtopics: string[];
   email?: string;
   location?: string;
   team?: string;
+  source?: SourceId;
+  /** Entra object id. For Entra-loaded people this equals `id`. */
+  entraId?: string;
+  department?: string;
+  officeLocation?: string;
+  employeeId?: string;
+  employeeType?: string;
+  /**
+   * Blob URL of a fetched photo. Memory only, never serialized. Prefer
+   * `usePhoto(id)` from src/datasource/photos.ts.
+   */
+  photoUrl?: string;
 }
 
 export interface Division {
