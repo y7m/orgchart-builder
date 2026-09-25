@@ -21,8 +21,8 @@ Locations: Tel Aviv 31%, NYC 18%, Remote 17%, Kraków 13%, London 11%, Bangalore
 Employment types: FTE about 95%, Contractor about 4% (Support about 12%), Intern about 1%, plus 2 Vacancy rows.
 
 ## Columns
-`ID, Name, Title, Manager, Division, Subtopics` are read by the current importer.
-`TeamName, OrgPath, Location, Email, EmploymentType, StartDate, CostCenter` are ignored today. They are there for a future Entra mapping: `officeLocation`, `mail`, `employeeType`, `employeeHireDate` and `costCenter`. `Division` maps to `department`, `Title` to `jobTitle`, and `ID` to `employeeId`.
+`ID, Name, Title, Manager, Division, Subtopics, TeamName, Location, Email` are read by the importer.
+`OrgPath, EmploymentType, StartDate, CostCenter` are ignored today. These columns, plus Location and Email, are there for a future Entra mapping: `officeLocation`, `mail`, `employeeType`, `employeeHireDate` and `costCenter`. `Division` maps to `department`, `Title` to `jobTitle`, and `ID` to `employeeId`.
 The Manager column holds the manager's ID, never a name.
 
 ## Edge cases (intentional)
@@ -35,7 +35,8 @@ The Manager column holds the manager's ID, never a name.
 - **IDs follow hire date, with gaps.** Many managers have a higher ID than their reports, so manager references often point forward in the file.
 
 ## Importer notes
-- **Uppercase IDs don't resolve.** `massImportEmployees` stores `extId` as-is but lowercases the Manager value before looking it up, so `E000123` never matches. In a Node simulation of the real store, 0 of 2000 managers resolved and everyone fell back to the root. Fix the lookup, or generate with `--lowercase-ids` (1996 of 2000 then resolve; the other 4 are the 3 roots and the dangling row).
-- **Unresolved managers fall back to the root.** When a root already exists, orphans and dangling rows are silently attached to it. When the chart is empty, there is no root to fall back to, so a file with several roots makes `d3.stratify` throw "multiple roots" and the canvas renders nothing.
-- **Duplicate names can collide.** Name lookup keeps whichever row came last. That is harmless when Manager is an ID, but a manager given by name would resolve silently to the wrong person.
-- **Header naming.** The `[^a-z0-ind]` regex is effectively `[^a-z0-9]` except that it also keeps `_`. So `Employee_ID` is not recognised, while `Employee ID` and `EmployeeID` are. A header named `Team` maps to division and would overwrite Division, so this file uses `TeamName`. Any header containing `job` maps to title.
+The importer handled these edge cases badly before phase 0. It now handles them as follows (see `tests/import.test.ts`, which imports org_2000):
+- IDs match case-insensitively, so 1996 of 2000 managers resolve.
+- The 2 orphan rows and the dangling-manager row become top-level people under the "Organization" placeholder, and the import summary reports them.
+- A manager given by a duplicated name is left unassigned and reported.
+- Headers must match an alias exactly (see the root README). `Team`/`TeamName` goes to the team field, not division, and `Job Family` is ignored.
