@@ -1,0 +1,201 @@
+ID,Name,Title,Manager,Division,Subtopics,TeamName,OrgPath,Location,Email,EmploymentType,StartDate,CostCenter
+E000001,Amit Klein,Chief Executive Officer,,Executive Office,"Strategy, Fundraising",Office of the CEO,Executive Office > Office of the CEO,Tel Aviv,amit.klein@contoso.example,FTE,2012-02-01,CC-0101
+E000002,Gal Weiss,Compliance Analyst,E000052,IT & Security,,IT & Security Team B,IT & Security > IT & Security Team B,NYC,gal.weiss@contoso.example,FTE,2012-07-10,CC-1202
+E000006,Kevin Morris,"Team Lead, Sales Pod C",E000010,Sales,Co-Selling,Sales Pod C,Sales > Sales Pod C,London,kevin.morris@contoso.example,FTE,2012-08-06,CC-3003
+E000007,José Álvarez-Ruiz,Learning & Development Specialist,E000223,Human Resources,,Human Resources Team B,Human Resources > Human Resources Team B,Tel Aviv,jose.alvarez-ruiz@contoso.example,FTE,2012-08-21,CC-8002
+E000008,Aishwarya Goswami,"Senior Engineering Manager, Product Engineering",E000090,Engineering,,Product Engineering,Engineering > Product Engineering,Bangalore,aishwarya.goswami@contoso.example,FTE,2012-12-22,CC-1002
+E000009,Christopher Edwards,Software Engineer,E000103,Engineering,,Web Frontend,Engineering > Product Engineering > Web Frontend,NYC,christopher.edwards@contoso.example,FTE,2013-01-06,CC-1002
+E000010,Volodymyr Marchenko,Chief Revenue Officer,E000001,Sales,"M&A, Org Design",Sales,Sales,Tel Aviv,volodymyr.marchenko@contoso.example,FTE,2013-05-07,CC-3000
+E000011,Neta Gabay,Chief Technology Officer,E000001,Engineering,"M&A, Leadership",Engineering,Engineering,Tel Aviv,neta.gabay@contoso.example,FTE,2013-11-28,CC-1000
+E000012,Anjali Joshi,"Team Lead, Quality Engineering Squad B",E000064,Engineering,Playwright,Quality Engineering Squad B,Engineering > Quality Engineering > Quality Engineering Squad B,Bangalore,anjali.joshi@contoso.example,FTE,2014-07-03,CC-1004
+E000013,Björn Ångström,Senior SOC Analyst,E000152,IT & Security,Threat Hunting,IT & Security Team A,IT & Security > IT & Security Team A,NYC,bjorn.angstrom@contoso.example,FTE,2015-03-20,CC-1201
+E000015,Yael Gabay,General Counsel,E000001,Legal,"Strategy, Board Relations",Legal,Legal,Tel Aviv,yael.gabay@contoso.example,FTE,2015-09-05,CC-9000
+E000016,Lavanya Singh,Associate Support Specialist,E000085,Customer Support,French,Customer Support Shift A,Customer Support > Customer Support Shift A,Bangalore,lavanya.singh@contoso.example,FTE,2015-11-05,CC-4001
+E000017,Salma Azar,Field Marketing Manager,E000123,Marketing,SEM,Marketing Team A,Marketing > Marketing Team A,Tel Aviv,salma.azar@contoso.example,FTE,2016-02-20,CC-6001
+E000020,Julien Thomas,"Team Lead, Growth Squad A",E000134,Engineering,GraphQL,Growth Squad A,Engineering > Product Engineering > Growth > Growth Squad A,Remote,julien.thomas@contoso.example,FTE,2016-04-08,CC-1002
+E000023,Priya Sharma,Enterprise Account Executive,E000191,Sales,"Salesforce, Forecasting",Sales Pod B,Sales > Sales Pod B,Remote,priya.sharma@contoso.example,FTE,2016-06-09,CC-3002
+E000024,Yuliia Boyko,Enterprise Account Executive,,Sales,"Forecasting, MEDDICC",Sales Pod B,Sales > Sales Pod B,Remote,yuliia.boyko@contoso.example,FTE,2016-09-22,CC-3002
+E000025,Ryan Parker,Associate Support Specialist,E000115,Customer Support,,Customer Support Shift B,Customer Support > Customer Support Shift B,Bangalore,ryan.parker@contoso.example,Contractor,2016-11-08,CC-4002
+E000029,Natalia Kuznetsova,Staff Full Stack Engineer,E000222,Engineering,"GraphQL, API Design, Python",Marketplace,Engineering > Product Engineering > Marketplace,Tel Aviv,natalia.kuznetsova@contoso.example,Contractor,2017-01-12,CC-1002
+E000030,Matthias Schneider,Enterprise Account Executive,E000173,Sales,"MEDDICC, Enterprise Sales",Sales Pod A,Sales > Sales Pod A,Remote,matthias.schneider@contoso.example,FTE,2017-06-11,CC-3001
+E000031,Divya Desai,Associate Support Operations Analyst,E000115,Customer Support,,Customer Support Shift B,Customer Support > Customer Support Shift B,Bangalore,divya.desai@contoso.example,FTE,2017-06-27,CC-4002
+E000032,Robert Hall,Software Engineer,E000103,Engineering,Web Performance,Web Frontend,Engineering > Product Engineering > Web Frontend,NYC,robert.hall@contoso.example,Contractor,2017-07-19,CC-1002
+E000033,Ryan Adams,Strategy Analyst,E000175,Operations,"Excel, OKRs, Business Cases",Operations Team A,Operations > Operations Team A,London,ryan.adams@contoso.example,FTE,2017-09-05,CC-5001
+E000037,Małgorzata Jankowska,Senior Technical Program Manager,E000090,Engineering,Architecture Reviews,Engineering,Engineering,Kraków,malgorzata.jankowska@contoso.example,FTE,2017-10-03,CC-1000
+E000038,Karthik Chatterjee,Software Engineer,E000252,Engineering,"PostgreSQL, API Design",Payments,Engineering > Product Engineering > Payments,Bangalore,karthik.chatterjee@contoso.example,FTE,2018-04-04,CC-1002
+E000039,Kavya Bose,Senior Software Engineer,E000252,Engineering,"Node.js, TypeScript",Payments,Engineering > Product Engineering > Payments,Bangalore,kavya.bose@contoso.example,FTE,2018-08-07,CC-1002
+E000040,Hila Sasson,Data Governance Analyst,E000120,Data,"Data Quality, GDPR",Data Squad B,Data > Data Squad B,Tel Aviv,hila.sasson@contoso.example,FTE,2019-01-07,CC-1102
+E000041,Guy Stern,Senior Financial Analyst,E000255,Finance,"Anaplan, Forecasting, Excel",Finance Team B,Finance > Finance Team B,Tel Aviv,guy.stern@contoso.example,FTE,2019-02-12,CC-7002
+E000042,Boris Mikhailov,Chief Human Resources Officer,E000001,Human Resources,"M&A, Leadership",Human Resources,Human Resources,Tel Aviv,boris.mikhailov@contoso.example,FTE,2019-07-20,CC-8000
+E000046,Kevin Nelson,"Team Lead, Human Resources Team A",E000042,Human Resources,Sourcing,Human Resources Team A,Human Resources > Human Resources Team A,London,kevin.nelson@contoso.example,FTE,2019-07-23,CC-8001
+E000047,Ivan Smirnov,Account Executive,E000006,Sales,"Cold Outreach, Negotiation",Sales Pod C,Sales > Sales Pod C,Tel Aviv,ivan.smirnov@contoso.example,FTE,2019-08-10,CC-3003
+E000048,Lin Yang,Enterprise Account Executive,E000006,Sales,"Negotiation, Salesforce",Sales Pod C,Sales > Sales Pod C,Remote,lin.yang@contoso.example,FTE,2019-08-11,CC-3003
+E000049,Katarzyna Kowalczyk,Enterprise Account Executive,E000191,Sales,Salesforce,Sales Pod B,Sales > Sales Pod B,Remote,katarzyna.kowalczyk@contoso.example,FTE,2019-08-28,CC-3002
+E000052,Pavel Smirnov,"Team Lead, IT & Security Team B",E000237,IT & Security,"PowerShell, Splunk",IT & Security Team B,IT & Security > IT & Security Team B,Tel Aviv,pavel.smirnov@contoso.example,FTE,2019-09-05,CC-1202
+E000054,Dana Mizrahi,Chief Operating Officer,E000001,Operations,"Org Design, Strategy",Operations,Operations,Tel Aviv,dana.mizrahi@contoso.example,FTE,2019-10-12,CC-5000
+E000057,Tyler Evans,"Manager, Operations",E000054,Operations,,Operations,Operations,NYC,tyler.evans@contoso.example,FTE,2020-01-23,CC-5000
+E000058,Andrés Ortiz,Site Reliability Engineer,E000061,Engineering,Incident Response,Infrastructure,Engineering > Platform > Infrastructure,Remote,andres.ortiz@contoso.example,FTE,2020-02-22,CC-1001
+E000059,Michael Lewis,Network Engineer,E000061,Engineering,,Infrastructure,Engineering > Platform > Infrastructure,Remote,michael.lewis@contoso.example,FTE,2020-05-31,CC-1001
+E000060,Siddharth Sharma,"Manager, Data",E000011,Data,OKRs,Data,Data,Remote,siddharth.sharma@contoso.example,FTE,2020-06-07,CC-1100
+E000061,Suresh Mukherjee,"Engineering Manager, Infrastructure",E000171,Engineering,Process Design,Infrastructure,Engineering > Platform > Infrastructure,Bangalore,suresh.mukherjee@contoso.example,FTE,2020-06-26,CC-1001
+E000062,Amit Zohar,Enterprise Account Executive,E000191,Sales,"Forecasting, MEDDICC, Negotiation",Sales Pod B,Sales > Sales Pod B,Remote,amit.zohar@contoso.example,FTE,2020-06-26,CC-3002
+E000063,Dawid Pawłowski,Senior Application Security Engineer,E000190,Engineering,"Threat Modeling, IAM, SAST",Security Engineering,Engineering > Security Engineering,Kraków,dawid.pawlowski@contoso.example,FTE,2020-07-19,CC-1005
+E000064,David Cohen,"Engineering Manager, Quality Engineering",E000090,Engineering,Python,Quality Engineering,Engineering > Quality Engineering,London,david.cohen@contoso.example,FTE,2020-08-14,CC-1004
+E000065,Joanna Malinowska,Machine Learning Engineer,E000154,Data,"LLMs, PyTorch, Feature Stores",Data Squad A,Data > Data Squad A,Kraków,joanna.malinowska@contoso.example,FTE,2020-09-11,CC-1101
+E000066,Oleksandr Lysenko,Senior Software Architect,E000090,Engineering,"Domain-Driven Design, Cloud Architecture",Architecture,Engineering > Architecture,Kraków,oleksandr.lysenko@contoso.example,FTE,2020-09-17,CC-1006
+E000067,Hui Chen,Partner Manager,E000191,Sales,"Partner Enablement, Channel Sales",Sales Pod B,Sales > Sales Pod B,Remote,hui.chen@contoso.example,FTE,2020-10-31,CC-3002
+E000068,Manoj Shetty,Frontend Engineer,E000103,Engineering,"React, Storybook",Web Frontend,Engineering > Product Engineering > Web Frontend,NYC,manoj.shetty@contoso.example,FTE,2020-11-07,CC-1002
+E000070,Shai Ohana,Procurement Specialist,E000224,Operations,Sourcing,Operations Team B,Operations > Operations Team B,Tel Aviv,shai.ohana@contoso.example,FTE,2020-11-25,CC-5002
+E000071,Daniel Barak,Product Manager,E000161,Product,"Stakeholder Management, Discovery",Product Team A,Product > Product Team A,Tel Aviv,daniel.barak@contoso.example,FTE,2020-11-27,CC-2001
+E000072,Anna Nowak,Customer Support Specialist,E000115,Customer Support,Hebrew,Customer Support Shift B,Customer Support > Customer Support Shift B,Bangalore,anna.nowak@contoso.example,FTE,2020-12-07,CC-4002
+E000073,Adi Carmeli,Senior Product Marketing Manager,E000146,Marketing,"Competitive Intelligence, Messaging, Launches",Marketing Team B,Marketing > Marketing Team B,Tel Aviv,adi.carmeli@contoso.example,FTE,2021-02-02,CC-6002
+E000077,Neta Mizrahi,Executive Assistant to the CRO,E000010,Executive Office,,Office of the CRO,Executive Office > Office of the CRO,Tel Aviv,neta.mizrahi@contoso.example,FTE,2021-02-02,CC-0103
+E000078,Yu Liu,Software Engineer,E000103,Engineering,,Web Frontend,Engineering > Product Engineering > Web Frontend,NYC,yu.liu@contoso.example,FTE,2021-03-19,CC-1002
+E000079,Seán Ó Súilleabháin,Senior Software Engineer,E000252,Engineering,"API Design, Python",Payments,Engineering > Product Engineering > Payments,Bangalore,sean.osuilleabhain@contoso.example,FTE,2021-04-02,CC-1002
+E000080,Michael Brown,Chief Product Officer,E000001,Product,"Board Relations, Leadership",Product,Product,Tel Aviv,michael.brown@contoso.example,FTE,2021-05-16,CC-2000
+E000081,Katherine Morris,Enterprise Account Executive,E000191,Sales,,Sales Pod B,Sales > Sales Pod B,Remote,katherine.morris@contoso.example,FTE,2021-07-30,CC-3002
+E000082,Łukasz Wróbel-Nowak,Senior Product Marketing Manager,E000123,Marketing,"Positioning, Launches",Marketing Team A,Marketing > Marketing Team A,Tel Aviv,lukasz.wrobel-nowak@contoso.example,FTE,2021-08-27,CC-6001
+E000086,Sebastian Weber,Senior Software Engineer,E000103,Engineering,"TypeScript, Storybook",Web Frontend,Engineering > Product Engineering > Web Frontend,NYC,sebastian.weber@contoso.example,FTE,2021-09-01,CC-1002
+E000087,Roni Rubin,Associate Backend Engineer,E000170,Engineering,"Go, Kotlin, API Design",Core Services,Engineering > Platform > Core Services,Tel Aviv,roni.rubin@contoso.example,FTE,2021-09-01,CC-1001
+E000089,Vivek Patel,Support Specialist,E000244,Customer Support,"Billing Support, French",Customer Support Shift A,Customer Support > Customer Support Shift A,Bangalore,vivek.patel@contoso.example,FTE,2021-09-18,CC-4001
+E000090,Keerthi Agarwal,"Director of Engineering, Engineering",E000011,Engineering,"Process Design, SQL",Engineering,Engineering,Bangalore,keerthi.agarwal@contoso.example,FTE,2021-11-29,CC-1000
+E000091,Hila Malka,Senior Full Stack Engineer,E000222,Engineering,,Marketplace,Engineering > Product Engineering > Marketplace,Tel Aviv,hila.malka@contoso.example,FTE,2021-12-15,CC-1002
+E000092,Jack Wilson,Associate Revenue Operations Analyst,E000173,Sales,Territory Planning,Sales Pod A,Sales > Sales Pod A,NYC,jack.wilson@contoso.example,FTE,2022-01-21,CC-3001
+E000093,Yoav David,Principal Engineer,E000090,Engineering,"Roadmapping, Program Management, Architecture Reviews",Engineering,Engineering,Tel Aviv,yoav.david@contoso.example,FTE,2022-01-24,CC-1000
+E000094,Kamil Walczak,Android Engineer,E000250,Engineering,"Kotlin, Jetpack Compose, Java",Mobile,Engineering > Mobile,Kraków,kamil.walczak@contoso.example,FTE,2022-01-31,CC-1003
+E000095,Babajide Danjuma,Account Executive,E000173,Sales,,Sales Pod A,Sales > Sales Pod A,Remote,babajide.danjuma@contoso.example,FTE,2022-02-12,CC-3001
+E000096,Jan Król,Senior Sourcer,E000046,Human Resources,Employer Branding,Human Resources Team A,Human Resources > Human Resources Team A,Remote,jan.krol@contoso.example,FTE,2022-03-04,CC-8001
+E000097,Aleksandra Olszewska,Senior Android Engineer,E000250,Engineering,"Java, Mobile CI",Mobile,Engineering > Mobile,Kraków,aleksandra.olszewska@contoso.example,FTE,2022-04-16,CC-1003
+E000098,Nikhil Hegde,Payroll Specialist,E000105,Finance,"Payroll, Hibob",Finance Team A,Finance > Finance Team A,Bangalore,nikhil.hegde@contoso.example,FTE,2022-04-16,CC-7001
+E000099,Yael Shemesh,Senior Product Manager,E000127,Product,,Product Team B,Product > Product Team B,Tel Aviv,yael.shemesh@contoso.example,FTE,2022-04-19,CC-2002
+E000100,Amelia Wright,Enterprise Account Executive,E000173,Sales,"Enterprise Sales, Forecasting",Sales Pod A,Sales > Sales Pod A,London,amelia.wright@contoso.example,FTE,2022-07-01,CC-3001
+E000101,Liat Carmeli,Senior Build Engineer,E000256,Engineering,"CI/CD, GitHub Actions",Developer Experience,Engineering > Platform > Developer Experience,Tel Aviv,liat.carmeli@contoso.example,Contractor,2022-07-13,CC-1001
+E000102,Shira Shemesh,Senior Full Stack Engineer,E000222,Engineering,,Marketplace,Engineering > Product Engineering > Marketplace,Tel Aviv,shira.shemesh@contoso.example,FTE,2022-08-04,CC-1002
+E000103,Tatiana Vasilieva,"Engineering Manager, Web Frontend",E000008,Engineering,React,Web Frontend,Engineering > Product Engineering > Web Frontend,Tel Aviv,tatiana.vasilieva@contoso.example,FTE,2022-08-05,CC-1002
+E000104,Tao Wang,Senior Account Executive,E000191,Sales,"Pipeline Management, Salesforce, Cold Outreach",Sales Pod B,Sales > Sales Pod B,Remote,tao.wang@contoso.example,FTE,2022-08-08,CC-3002
+E000105,Reem Darwish,"Team Lead, Finance Team A",E000138,Finance,"US GAAP, Payroll",Finance Team A,Finance > Finance Team A,Tel Aviv,reem.darwish@contoso.example,FTE,2022-08-11,CC-7001
+E000106,Beata Kwiatkowska,Customer Success Manager,E000115,Customer Support,"QBRs, Churn Reduction",Customer Support Shift B,Customer Support > Customer Support Shift B,Kraków,beata.kwiatkowska@contoso.example,FTE,2022-09-05,CC-4002
+E000107,Liat Ben-David,Commercial Counsel,E000015,Legal,"SaaS Agreements, Contract Negotiation",Legal,Legal,Tel Aviv,liat.ben-david@contoso.example,FTE,2022-09-11,CC-9000
+E000108,Rahul Saxena,Customer Success Manager,E000244,Customer Support,"Churn Reduction, Renewals",Customer Support Shift A,Customer Support > Customer Support Shift A,Bangalore,rahul.saxena@contoso.example,FTE,2022-09-18,CC-4001
+E000112,Florian Richter,Site Reliability Engineer,E000061,Engineering,,Infrastructure,Engineering > Platform > Infrastructure,Remote,florian.richter@contoso.example,Contractor,2022-09-25,CC-1001
+E000113,Shai Elbaz,Senior Full Stack Engineer,E000256,Engineering,"GraphQL, API Design",Developer Experience,Engineering > Platform > Developer Experience,Tel Aviv,shai.elbaz@contoso.example,FTE,2022-09-29,CC-1001
+E000114,Nasser Nassar,QA Engineer,E000012,Engineering,"Selenium, Python, Test Automation",Quality Engineering Squad B,Engineering > Quality Engineering > Quality Engineering Squad B,Tel Aviv,nasser.nassar@contoso.example,FTE,2022-10-21,CC-1004
+E000115,王芳,"Team Lead, Customer Support Shift B",E000117,Customer Support,Training,Customer Support Shift B,Customer Support > Customer Support Shift B,London,fang.wang@contoso.example,FTE,2022-10-28,CC-4002
+E000117,Keerthi Das,"Team Lead, Customer Support",E000054,Customer Support,SQL,Customer Support,Customer Support,Kraków,keerthi.das@contoso.example,FTE,2022-11-17,CC-4000
+E000118,Jakub Stępień,Senior Full Stack Engineer,E000253,Engineering,"React, API Design",Growth Squad B,Engineering > Product Engineering > Growth > Growth Squad B,Kraków,jakub.stepien@contoso.example,FTE,2022-11-22,CC-1002
+E000119,Piotr Kozłowski,Customer Support Specialist,E000115,Customer Support,French,Customer Support Shift B,Customer Support > Customer Support Shift B,Kraków,piotr.kozlowski@contoso.example,Contractor,2022-12-22,CC-4002
+E000120,Amara Danjuma,"Team Lead, Data Squad B",E000060,Data,Experimentation,Data Squad B,Data > Data Squad B,London,amara.danjuma@contoso.example,FTE,2023-01-01,CC-1102
+E000121,Iwona Krawczyk,Senior Product Manager,E000161,Product,"A/B Testing, Stakeholder Management, Pricing",Product Team A,Product > Product Team A,Kraków,iwona.krawczyk@contoso.example,FTE,2023-01-02,CC-2001
+E000122,Madison Green,Senior Account Executive,E000173,Sales,"Pipeline Management, Negotiation",Sales Pod A,Sales > Sales Pod A,NYC,madison.green@contoso.example,FTE,2023-01-04,CC-3001
+E000123,Hélène Blanc,"Team Lead, Marketing Team A",E000132,Marketing,,Marketing Team A,Marketing > Marketing Team A,Tel Aviv,helene.blanc@contoso.example,FTE,2023-02-25,CC-6001
+E000124,Miguel Sánchez,Site Reliability Engineer,E000061,Engineering,,Infrastructure,Engineering > Platform > Infrastructure,Remote,miguel.sanchez@contoso.example,FTE,2023-03-12,CC-1001
+E000126,Lauren Nelson,Copywriter,E000146,Marketing,"Editorial, PR, Social Media",Marketing Team B,Marketing > Marketing Team B,NYC,lauren.nelson@contoso.example,FTE,2023-03-25,CC-6002
+E000127,Nir Levi,"Team Lead, Product Team B",E000080,Product,"OKRs, Prototyping",Product Team B,Product > Product Team B,Tel Aviv,nir.levi@contoso.example,FTE,2023-03-27,CC-2002
+E000128,Artem Mikhailov,Software Engineer,E000252,Engineering,"React, Node.js",Payments,Engineering > Product Engineering > Payments,Tel Aviv,artem.mikhailov@contoso.example,FTE,2023-03-29,CC-1002
+E000129,Michael Smith,UX Researcher,E000161,Product,,Product Team A,Product > Product Team A,Remote,michael.smith@contoso.example,FTE,2023-05-16,CC-2001
+E000130,Magdalena Kowalska,Senior Data Engineer,E000154,Data,"Spark, Kafka, Snowflake",Data Squad A,Data > Data Squad A,Kraków,magdalena.kowalska@contoso.example,FTE,2023-06-05,CC-1101
+E000131,Omer Levi,Frontend Engineer,E000103,Engineering,React,Web Frontend,Engineering > Product Engineering > Web Frontend,NYC,omer.levi@contoso.example,FTE,2023-07-05,CC-1002
+E000132,Tomer Segal,Chief Marketing Officer,E000001,Marketing,"Strategy, Org Design",Marketing,Marketing,NYC,tomer.segal@contoso.example,FTE,2023-07-08,CC-6000
+E000133,Amit Dahan,FP&A Analyst,E000255,Finance,Excel,Finance Team B,Finance > Finance Team B,Tel Aviv,amit.dahan@contoso.example,FTE,2023-08-20,CC-7002
+E000134,Anjali Desai,"Engineering Manager, Growth",E000008,Engineering,Node.js,Growth,Engineering > Product Engineering > Growth,Bangalore,anjali.desai@contoso.example,FTE,2023-08-22,CC-1002
+E000135,Henry Evans,Senior Compensation Analyst,E000046,Human Resources,"Compensation, Equity, Pave",Human Resources Team A,Human Resources > Human Resources Team A,Remote,henry.evans@contoso.example,FTE,2023-08-31,CC-8001
+E000136,Michael Smith,iOS Engineer,E000250,Engineering,"Mobile CI, Objective-C",Mobile,Engineering > Mobile,Kraków,michael.smith2@contoso.example,FTE,2023-09-30,CC-1003
+E000137,Piotr Dudek,Associate Software Engineer,E000253,Engineering,,Growth Squad B,Engineering > Product Engineering > Growth > Growth Squad B,Kraków,piotr.dudek@contoso.example,FTE,2023-10-01,CC-1002
+E000138,Tyler Mitchell,Chief Financial Officer,E000001,Finance,"Leadership, Board Relations",Finance,Finance,Tel Aviv,tyler.mitchell@contoso.example,FTE,2023-10-05,CC-7000
+E000140,Siobhán O'Brien,Site Reliability Engineer,E000061,Engineering,"Prometheus, Terraform, Incident Response",Infrastructure,Engineering > Platform > Infrastructure,Remote,siobhan.obrien@contoso.example,FTE,2023-11-22,CC-1001
+E000141,Nataliya Tkachenko,Senior Commercial Counsel,E000015,Legal,,Legal,Legal,Tel Aviv,nataliya.tkachenko@contoso.example,FTE,2023-12-09,CC-9000
+E000142,Rotem Levi,Principal Backend Engineer,E000061,Engineering,"gRPC, Python",Infrastructure,Engineering > Platform > Infrastructure,Tel Aviv,rotem.levi@contoso.example,FTE,2024-01-07,CC-1001
+E000143,Conor Byrne,Enterprise Account Executive,E000006,Sales,Enterprise Sales,Sales Pod C,Sales > Sales Pod C,Remote,conor.byrne@contoso.example,FTE,2024-01-13,CC-3003
+E000144,Oliver Anderson,IT Support Engineer,E000052,IT & Security,"Intune, Hardware, Jamf",IT & Security Team B,IT & Security > IT & Security Team B,NYC,oliver.anderson@contoso.example,FTE,2024-02-14,CC-1202
+E000145,Li Liu,Frontend Engineer,E000103,Engineering,Web Performance,Web Frontend,Engineering > Product Engineering > Web Frontend,NYC,li.liu@contoso.example,FTE,2024-02-17,CC-1002
+E000146,יעל כהן,"Team Lead, Marketing Team B",E000132,Marketing,"Competitive Intelligence, Motion Graphics",Marketing Team B,Marketing > Marketing Team B,Tel Aviv,yael.cohen.he@contoso.example,FTE,2024-03-19,CC-6002
+E000147,Shai Barak,Software Engineer,E000222,Engineering,,Marketplace,Engineering > Product Engineering > Marketplace,Tel Aviv,shai.barak@contoso.example,FTE,2024-04-06,CC-1002
+E000150,Emma Smith,Commercial Counsel,E000015,Legal,"Procurement Law, SaaS Agreements",Legal,Legal,NYC,emma.smith@contoso.example,FTE,2024-04-12,CC-9000
+E000151,Divya Mishra,Senior Partner Manager,E000191,Sales,"Co-Selling, AWS Marketplace, Partner Enablement",Sales Pod B,Sales > Sales Pod B,Remote,divya.mishra@contoso.example,FTE,2024-04-29,CC-3002
+E000152,Nadav Segal,"Team Lead, IT & Security Team A",E000237,IT & Security,Threat Hunting,IT & Security Team A,IT & Security > IT & Security Team A,Tel Aviv,nadav.segal@contoso.example,FTE,2024-05-29,CC-1201
+E000153,Efrat Levi,UX Researcher,E000127,Product,Usability Testing,Product Team B,Product > Product Team B,Tel Aviv,efrat.levi@contoso.example,FTE,2024-06-14,CC-2002
+E000154,Kavya Krishnan,"Team Lead, Data Squad A",E000060,Data,SQL,Data Squad A,Data > Data Squad A,Remote,kavya.krishnan@contoso.example,FTE,2024-06-19,CC-1101
+E000155,Keren Shapiro,Senior Sourcer,E000223,Human Resources,,Human Resources Team B,Human Resources > Human Resources Team B,Tel Aviv,keren.shapiro@contoso.example,FTE,2024-06-23,CC-8002
+E000156,Tal Segal,Data Engineer,E000120,Data,"Airflow, Snowflake",Data Squad B,Data > Data Squad B,Tel Aviv,tal.segal@contoso.example,FTE,2024-06-25,CC-1102
+E000157,David Cohen,Business Development Representative,E000006,Sales,"Outreach.io, Salesforce, Cold Outreach",Sales Pod C,Sales > Sales Pod C,Remote,david.cohen2@contoso.example,FTE,2024-07-01,CC-3003
+E000158,María Mendoza,Enterprise Account Executive,E000173,Sales,"Negotiation, Salesforce, Forecasting",Sales Pod A,Sales > Sales Pod A,NYC,maria.mendoza@contoso.example,FTE,2024-07-13,CC-3001
+E000160,Yael Carmeli,Digital Marketing Specialist,E000123,Marketing,HubSpot,Marketing Team A,Marketing > Marketing Team A,Tel Aviv,yael.carmeli@contoso.example,FTE,2024-07-14,CC-6001
+E000161,Yuval David,"Team Lead, Product Team A",E000080,Product,,Product Team A,Product > Product Team A,Tel Aviv,yuval.david@contoso.example,FTE,2024-08-22,CC-2001
+E000162,Shreya Hegde,Senior Technical Support Engineer,E000244,Customer Support,,Customer Support Shift A,Customer Support > Customer Support Shift A,Bangalore,shreya.hegde@contoso.example,FTE,2024-08-28,CC-4001
+E000163,Nir Navon,Senior Full Stack Engineer,E000256,Engineering,,Developer Experience,Engineering > Platform > Developer Experience,Tel Aviv,nir.navon@contoso.example,FTE,2024-09-12,CC-1001
+E000164,George Wright,Strategic Advisor,,Executive Office,"Go-to-Market, Board Relations",Office of the CEO,Executive Office > Office of the CEO,Remote,george.wright@contoso.example,Contractor,2024-09-16,CC-0101
+E000165,Zoë D'Angelo,"Team Lead, Quality Engineering Squad A",E000064,Engineering,"Test Automation, Playwright",Quality Engineering Squad A,Engineering > Quality Engineering > Quality Engineering Squad A,Remote,zoe.dangelo@contoso.example,FTE,2024-09-18,CC-1004
+E000166,Luis Mendoza,Program Manager,E000175,Operations,Jira,Operations Team A,Operations > Operations Team A,Remote,luis.mendoza@contoso.example,FTE,2024-10-26,CC-5001
+E000167,Tomer Mizrahi,Video Producer,E000123,Marketing,Adobe Creative Suite,Marketing Team A,Marketing > Marketing Team A,Tel Aviv,tomer.mizrahi@contoso.example,FTE,2024-10-26,CC-6001
+E000168,Roni Almog,Executive Assistant to the CTO,E000011,Executive Office,,Office of the CTO,Executive Office > Office of the CTO,Tel Aviv,roni.almog@contoso.example,FTE,2024-10-30,CC-0102
+E000169,Maciej Wójcik,QA Engineer,E000165,Engineering,"Python, Selenium, Test Automation",Quality Engineering Squad A,Engineering > Quality Engineering > Quality Engineering Squad A,Kraków,maciej.wojcik@contoso.example,FTE,2024-11-02,CC-1004
+E000170,Ngozi Okonkwo-Adeyemi,"Team Lead, Core Services",E000171,Engineering,Java,Core Services,Engineering > Platform > Core Services,Remote,ngozi.okonkwo-adeyemi@contoso.example,FTE,2024-12-21,CC-1001
+E000171,Yulia Morozova,"Senior Engineering Manager, Platform",E000090,Engineering,,Platform,Engineering > Platform,Tel Aviv,yulia.morozova@contoso.example,FTE,2025-01-14,CC-1001
+E000172,Orla Doyle,Associate Account Executive,E000006,Sales,Salesforce,Sales Pod C,Sales > Sales Pod C,London,orla.doyle@contoso.example,FTE,2025-01-15,CC-3003
+E000173,Yulia Pavlova,"Team Lead, Sales Pod A",E000010,Sales,Negotiation,Sales Pod A,Sales > Sales Pod A,NYC,yulia.pavlova@contoso.example,FTE,2025-02-05,CC-3001
+E000174,Aditya,Executive Assistant to the CEO,E000001,Executive Office,,Office of the CEO,Executive Office > Office of the CEO,Tel Aviv,aditya@contoso.example,FTE,2025-02-13,CC-0101
+E000175,Qing Xu,"Team Lead, Operations Team A",E000057,Operations,Sourcing,Operations Team A,Operations > Operations Team A,NYC,qing.xu@contoso.example,FTE,2025-02-22,CC-5001
+E000176,Iwona Michalska,Payroll Specialist,E000105,Finance,"Hibob, Compliance",Finance Team A,Finance > Finance Team A,London,iwona.michalska@contoso.example,FTE,2025-02-27,CC-7001
+E000177,Chiamaka Eze,Senior Account Executive,E000173,Sales,"Pipeline Management, Salesforce",Sales Pod A,Sales > Sales Pod A,NYC,chiamaka.eze@contoso.example,FTE,2025-03-22,CC-3001
+E000178,Suresh Chopra,Senior Customer Success Manager,E000115,Customer Support,"Onboarding, QBRs",Customer Support Shift B,Customer Support > Customer Support Shift B,Bangalore,suresh.chopra@contoso.example,FTE,2025-03-26,CC-4002
+E000179,Avi Dahan,Senior Graphic Designer,E000123,Marketing,Figma,Marketing Team A,Marketing > Marketing Team A,Tel Aviv,avi.dahan@contoso.example,FTE,2025-04-02,CC-6001
+E000180,Karthik Trivedi,Customer Support Specialist,E000244,Customer Support,,Customer Support Shift A,Customer Support > Customer Support Shift A,Bangalore,karthik.trivedi@contoso.example,FTE,2025-04-04,CC-4001
+E000183,Rajesh Sethi,Support Specialist,E000244,Customer Support,German,Customer Support Shift A,Customer Support > Customer Support Shift A,Bangalore,rajesh.sethi@contoso.example,Contractor,2025-04-06,CC-4001
+E000184,Suresh Srinivasan,Senior Backend Engineer,E000170,Engineering,"Python, PostgreSQL",Core Services,Engineering > Platform > Core Services,Bangalore,suresh.srinivasan@contoso.example,FTE,2025-04-11,CC-1001
+E000185,Thandiwe Nkosi,Test Automation Engineer,E000012,Engineering,Playwright,Quality Engineering Squad B,Engineering > Quality Engineering > Quality Engineering Squad B,Remote,thandiwe.nkosi@contoso.example,FTE,2025-04-15,CC-1004
+E000186,Ryan Harris,Senior Program Manager,E000224,Operations,"OKRs, Risk Management, Jira",Operations Team B,Operations > Operations Team B,Tel Aviv,ryan.harris@contoso.example,FTE,2025-04-29,CC-5002
+E000187,Omer David,Senior Product Operations Specialist,E000127,Product,"Jira, OKRs",Product Team B,Product > Product Team B,Tel Aviv,omer.david@contoso.example,FTE,2025-04-29,CC-2002
+E000188,Gaurav Kulkarni,Sales Enablement Specialist,E000191,Sales,"Gong, CPQ, Salesforce",Sales Pod B,Sales > Sales Pod B,Remote,gaurav.kulkarni@contoso.example,FTE,2025-05-02,CC-3002
+E000189,Noam Golan,IT Support Specialist,E000152,IT & Security,,IT & Security Team A,IT & Security > IT & Security Team A,Tel Aviv,noam.golan@contoso.example,FTE,2025-05-15,CC-1201
+E000190,Arun Verma,"Team Lead, Security Engineering",E000090,Engineering,IAM,Security Engineering,Engineering > Security Engineering,Bangalore,arun.verma@contoso.example,FTE,2025-06-10,CC-1005
+E000191,Chen Huang,"Team Lead, Sales Pod B",E000010,Sales,"Technical Discovery, Outreach.io",Sales Pod B,Sales > Sales Pod B,Remote,chen.huang@contoso.example,FTE,2025-07-03,CC-3002
+E000192,Rania Suleiman,Staff Full Stack Engineer,E000222,Engineering,"API Design, A/B Testing",Marketplace,Engineering > Product Engineering > Marketplace,Tel Aviv,rania.suleiman@contoso.example,FTE,2025-07-18,CC-1002
+E000193,Kamil Michalak,iOS Engineer,E000250,Engineering,,Mobile,Engineering > Mobile,Kraków,kamil.michalak@contoso.example,FTE,2025-07-23,CC-1003
+E000194,Neha Pandey,Senior Support Specialist,E000115,Customer Support,"Live Chat, Hebrew",Customer Support Shift B,Customer Support > Customer Support Shift B,Bangalore,neha.pandey@contoso.example,FTE,2025-08-15,CC-4002
+E000196,Paweł Walczak,Application Security Engineer,E000190,Engineering,,Security Engineering,Engineering > Security Engineering,Kraków,pawel.walczak@contoso.example,FTE,2025-09-03,CC-1005
+E000197,Avi Yosef,Software Engineer,E000222,Engineering,"API Design, TypeScript",Marketplace,Engineering > Product Engineering > Marketplace,Tel Aviv,avi.yosef@contoso.example,FTE,2025-09-13,CC-1002
+E000200,Dorota Nowak,Test Automation Engineer,E000165,Engineering,"Python, Selenium, Playwright",Quality Engineering Squad A,Engineering > Quality Engineering > Quality Engineering Squad A,Kraków,dorota.nowak@contoso.example,FTE,2025-09-27,CC-1004
+E000201,Rajesh Kamath,Software Engineer,E000252,Engineering,,Payments,Engineering > Product Engineering > Payments,Bangalore,rajesh.kamath@contoso.example,FTE,2025-10-06,CC-1002
+E000205,Sanjana Hegde,Senior Support Specialist,E000115,Customer Support,"Billing Support, French, Zendesk",Customer Support Shift B,Customer Support > Customer Support Shift B,Bangalore,sanjana.hegde@contoso.example,FTE,2025-11-08,CC-4002
+E000206,Roni Friedman,Associate AP Specialist,E000105,Finance,"IFRS, Reconciliations",Finance Team A,Finance > Finance Team A,NYC,roni.friedman@contoso.example,FTE,2025-11-09,CC-7001
+E000207,Revathi Mukherjee,Associate Customer Support Specialist,E000244,Customer Support,"German, Hebrew, Live Chat",Customer Support Shift A,Customer Support > Customer Support Shift A,Bangalore,revathi.mukherjee@contoso.example,FTE,2025-11-22,CC-4001
+E000208,"Carlos Mendoza, Jr.",Business Operations Analyst,E000224,Operations,Process Design,Operations Team B,Operations > Operations Team B,Tel Aviv,carlos.mendoza@contoso.example,FTE,2025-12-01,CC-5002
+E000209,Amit Pandey,Enterprise Account Executive,E000191,Sales,"Negotiation, Salesforce",Sales Pod B,Sales > Sales Pod B,Remote,amit.pandey@contoso.example,FTE,2025-12-02,CC-3002
+E000210,Inbar Dahan,Software Engineer,E000222,Engineering,"GraphQL, React, Node.js",Marketplace,Engineering > Product Engineering > Marketplace,Tel Aviv,inbar.dahan@contoso.example,FTE,2025-12-18,CC-1002
+E000211,Jürgen Müller-Lüdenscheidt,Senior Software Engineer,E000222,Engineering,"React, Python",Marketplace,Engineering > Product Engineering > Marketplace,Tel Aviv,jurgen.muller-ludenscheidt@contoso.example,FTE,2025-12-20,CC-1002
+E000212,Pranav Srinivasan,Software Engineer,E000252,Engineering,Python,Payments,Engineering > Product Engineering > Payments,Bangalore,pranav.srinivasan@contoso.example,FTE,2025-12-23,CC-1002
+E000213,Tyler Johnson,Support Operations Analyst,E000115,Customer Support,"Automation, Zendesk Admin",Customer Support Shift B,Customer Support > Customer Support Shift B,Kraków,tyler.johnson@contoso.example,FTE,2025-12-27,CC-4002
+E000215,Li Ma,Enterprise Account Executive,E000173,Sales,"Salesforce, Forecasting",Sales Pod A,Sales > Sales Pod A,NYC,li.ma@contoso.example,FTE,2026-01-04,CC-3001
+E000216,Avi Golan,Executive Assistant to the COO,E000054,Executive Office,,Office of the COO,Executive Office > Office of the COO,Tel Aviv,avi.golan@contoso.example,FTE,2026-01-05,CC-0104
+E000217,Pooja Mehta,Customer Support Specialist,E000244,Customer Support,Hebrew,Customer Support Shift A,Customer Support > Customer Support Shift A,Bangalore,pooja.mehta@contoso.example,FTE,2026-02-07,CC-4001
+E000218,Arun Das,Senior Customer Support Specialist,E000115,Customer Support,"Live Chat, Troubleshooting, German",Customer Support Shift B,Customer Support > Customer Support Shift B,Bangalore,arun.das@contoso.example,Contractor,2026-02-16,CC-4002
+E000219,Priya Sharma,Associate Facilities Specialist,E000224,Operations,Office Management,Operations Team B,Operations > Operations Team B,Tel Aviv,priya.sharma2@contoso.example,FTE,2026-02-18,CC-5002
+E000220,Ido Harel,Chief of Staff to the CEO,E000001,Executive Office,"Strategy, OKRs, Board Relations",Office of the CEO,Executive Office > Office of the CEO,Tel Aviv,ido.harel@contoso.example,FTE,2026-03-09,CC-0101
+E000221,Oksana Tkachuk,Full Stack Engineer,E000020,Engineering,,Growth Squad A,Engineering > Product Engineering > Growth > Growth Squad A,Kraków,oksana.tkachuk@contoso.example,FTE,2026-03-14,CC-1002
+E000222,Swati Goswami,"Engineering Manager, Marketplace",E000008,Engineering,A/B Testing,Marketplace,Engineering > Product Engineering > Marketplace,Remote,swati.goswami@contoso.example,FTE,2026-04-09,CC-1002
+E000223,Hadas Malka,"Team Lead, Human Resources Team B",E000042,Human Resources,,Human Resources Team B,Human Resources > Human Resources Team B,Tel Aviv,hadas.malka@contoso.example,FTE,2026-04-13,CC-8002
+E000224,Justin Cooper,"Team Lead, Operations Team B",E000057,Operations,,Operations Team B,Operations > Operations Team B,NYC,justin.cooper@contoso.example,FTE,2026-04-13,CC-5002
+E000225,Ayelet Peretz,Marketing Manager,E000146,Marketing,Events,Marketing Team B,Marketing > Marketing Team B,Tel Aviv,ayelet.peretz@contoso.example,FTE,2026-04-14,CC-6002
+E000226,Lucy Scott,Workplace Coordinator,E000224,Operations,"Vendor Coordination, Events",Operations Team B,Operations > Operations Team B,NYC,lucy.scott@contoso.example,FTE,2026-05-04,CC-5002
+E000227,Davide Marino,Program Manager,E000175,Operations,"OKRs, Risk Management",Operations Team A,Operations > Operations Team A,London,davide.marino@contoso.example,FTE,2026-05-08,CC-5001
+E000228,Avi Avidan,Senior Product Marketing Manager,E000146,Marketing,"Positioning, Competitive Intelligence",Marketing Team B,Marketing > Marketing Team B,Tel Aviv,avi.avidan@contoso.example,FTE,2026-05-10,CC-6002
+E000229,Anna Nowak,Android Engineer,E000250,Engineering,,Mobile,Engineering > Mobile,Bangalore,anna.nowak2@contoso.example,FTE,2026-05-16,CC-1003
+E000230,Harish Mukherjee,Senior Support Specialist,E000244,Customer Support,"Spanish, Troubleshooting, Billing Support",Customer Support Shift A,Customer Support > Customer Support Shift A,Bangalore,harish.mukherjee@contoso.example,FTE,2026-05-18,CC-4001
+E000231,Alejandro Ramírez,Associate Backend Engineer,E000061,Engineering,"Kafka, Go",Infrastructure,Engineering > Platform > Infrastructure,Remote,alejandro.ramirez@contoso.example,FTE,2026-05-20,CC-1001
+E000233,Noam Lavi,Senior Software Engineer,E000170,Engineering,"Kotlin, Go, Python",Core Services,Engineering > Platform > Core Services,Tel Aviv,noam.lavi@contoso.example,FTE,2026-05-27,CC-1001
+E000237,Maciej Walczak,"Manager, IT & Security",E000011,IT & Security,"OKRs, Excel",IT & Security,IT & Security,Kraków,maciej.walczak@contoso.example,FTE,2026-06-04,CC-1200
+E000238,Ying Ma,Software Engineer Intern,E000103,Engineering,"Accessibility, React, TypeScript",Web Frontend,Engineering > Product Engineering > Web Frontend,NYC,ying.ma@contoso.example,Intern,2026-06-05,CC-1002
+E000240,Pranav Kumar,Enterprise Account Executive,E000006,Sales,,Sales Pod C,Sales > Sales Pod C,Remote,pranav.kumar@contoso.example,FTE,2026-06-17,CC-3003
+E000244,Michal Zohar,"Team Lead, Customer Support Shift A",E000117,Customer Support,,Customer Support Shift A,Customer Support > Customer Support Shift A,Tel Aviv,michal.zohar@contoso.example,FTE,2026-06-18,CC-4001
+E000245,Lior Biton,Data Engineer Intern,E000120,Data,"Airflow, Snowflake, Kafka",Data Squad B,Data > Data Squad B,Tel Aviv,lior.biton@contoso.example,Intern,2026-06-27,CC-1102
+E000246,Anne-Marie van der Berg,Software Engineer Intern,E000170,Engineering,"Go, Distributed Systems, Microservices",Core Services,Engineering > Platform > Core Services,Tel Aviv,anne-marie.vanderberg@contoso.example,Intern,2026-07-03,CC-1001
+E000247,Jan Walczak,Android Engineer Intern,E000250,Engineering,Mobile CI,Mobile,Engineering > Mobile,Kraków,jan.walczak@contoso.example,Intern,2026-07-10,CC-1003
+E000248,Henry Smith,Associate Data Analyst,E000120,Data,Statistics,Data Squad B,Data > Data Squad B,Tel Aviv,henry.smith@contoso.example,FTE,2026-07-11,CC-1102
+E000249,Anna Kwiatkowska,Senior Android Engineer,E000250,Engineering,"Java, Kotlin",Mobile,Engineering > Mobile,Kraków,anna.kwiatkowska@contoso.example,FTE,2026-07-19,CC-1003
+E000250,Neta David,"Engineering Manager, Mobile",E000090,Engineering,,Mobile,Engineering > Mobile,Tel Aviv,neta.david@contoso.example,FTE,2026-07-29,CC-1003
+E000251,Anastasia Smirnova,Product Designer,E000127,Product,"Accessibility, Interaction Design",Product Team B,Product > Product Team B,Tel Aviv,anastasia.smirnova@contoso.example,FTE,2026-08-04,CC-2002
+E000252,Brandon Jones,"Engineering Manager, Payments",E000008,Engineering,,Payments,Engineering > Product Engineering > Payments,London,brandon.jones@contoso.example,FTE,2026-08-15,CC-1002
+E000253,Sipho Okonkwo,"Team Lead, Growth Squad B",E000134,Engineering,"React, API Design",Growth Squad B,Engineering > Product Engineering > Growth > Growth Squad B,London,sipho.okonkwo@contoso.example,FTE,2026-08-23,CC-1002
+E000254,Barbara Lewandowska,Senior Android Engineer,E000250,Engineering,"Java, Gradle, Mobile CI",Mobile,Engineering > Mobile,Kraków,barbara.lewandowska@contoso.example,FTE,2026-09-10,CC-1003
+E000255,Mary-Jane O'Connor,"Team Lead, Finance Team B",E000138,Finance,,Finance Team B,Finance > Finance Team B,Tel Aviv,mary-jane.oconnor@contoso.example,FTE,2026-09-15,CC-7002
+E000256,Vacant (REQ-1176),"Team Lead, Developer Experience (Open Req)",E000171,Engineering,,Developer Experience,Engineering > Platform > Developer Experience,Kraków,,Vacancy,,CC-1001
