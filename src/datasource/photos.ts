@@ -181,8 +181,9 @@ export const usePhoto = (entraId: string | null | undefined): PhotoState => {
   const l = useSyncExternalStore(subscribeLoader, () => loader);
   const value = useSyncExternalStore(l ? l.subscribe : noop, () => (l && entraId ? l.get(entraId) : undefined));
   useEffect(() => {
-    if (l && entraId) l.request(entraId);
-  }, [l, entraId]);
+    // Also re-requests after clear() (e.g. data reload revoked the old blob URLs).
+    if (l && entraId && value === undefined) l.request(entraId);
+  }, [l, entraId, value]);
   return value;
 };
 

@@ -119,7 +119,10 @@ export const loadEntra = async (interactive = false): Promise<LoadResult> => {
   }
   const r = await loadSource(graphSource(cfg, interactive));
   syncAccount();
-  if (r.ok) ensurePhotoLoader(cfg);
+  if (r.ok) {
+    clearPhotos(); // revoke old blob URLs; visible cards re-request lazily
+    ensurePhotoLoader(cfg);
+  }
   return r;
 };
 

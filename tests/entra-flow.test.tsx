@@ -164,6 +164,24 @@ describe('Entra boot flow', () => {
   });
 });
 
+describe('switching CSV -> Entra', () => {
+  it('carries subtopic assignments by employee ID / email', async () => {
+    const users = [
+      { ...GRAPH_USERS[0], employeeId: 'E1' },
+      { ...GRAPH_USERS[1] },
+    ];
+    await importCsv([
+      row({ name: 'Dana D.', extId: 'E1', subtopics: 'Topic A' }),
+      row({ name: 'Eli E.', extId: 'X9', email: 'ELI.engineer@corp.test', subtopics: 'Topic B' }),
+    ], 'replace');
+    setGraphFetch(vi.fn().mockResolvedValue(json({ value: users })));
+    await bootDataSources({ config: CFG, instance: fakeMsal() });
+    const by = Object.fromEntries(useOrgStore.getState().employees.map((e) => [e.id, e]));
+    expect(by['g-ceo'].subtopics).toEqual(['v1_1']);
+    expect(by['g-eng'].subtopics).toEqual(['v1_2']);
+  });
+});
+
 describe('no PII in browser storage', () => {
   it('after CSV import', async () => {
     await importCsv([

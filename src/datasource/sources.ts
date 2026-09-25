@@ -6,7 +6,7 @@ import { SourceLoadError } from './errors';
 import { fetchAllUsers, type GraphClientOptions } from './graph';
 import { DEFAULT_EXCLUSION, filterUsers, mapGraphUsers, type ExclusionConfig } from '../domain/entra';
 import { allSubtopicIds } from '../domain/org';
-import { applyLocalState, extractAssignments } from '../domain/overlay';
+import { applyLocalState, carryAssignments } from '../domain/overlay';
 
 export class DemoSource implements OrgDataSource {
   readonly id = 'demo' as const;
@@ -82,7 +82,7 @@ export class GraphSource implements OrgDataSource {
     const mapped = mapGraphUsers(kept, current.divisions);
     const employees = applyLocalState(
       mapped.employees,
-      extractAssignments(current.employees),
+      carryAssignments(current.employees, mapped.employees),
       current.overlays,
       allSubtopicIds(current),
     );
