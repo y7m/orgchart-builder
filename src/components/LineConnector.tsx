@@ -1,6 +1,8 @@
-import React from 'react';
 
-const LineConnector = ({ source, target, themeType, mainColor }) => {
+interface Point { x: number; y: number }
+interface Props { source: Point; target: Point; themeType: string; mainColor: string }
+
+const LineConnector = ({ source, target, themeType, mainColor }: Props) => {
     // To avoid cutting through custom shadow sizes, we start slightly lower than the card center
     // and end right at the top of the next card.
     // Standard card height is roughly 120-150px.

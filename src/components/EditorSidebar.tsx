@@ -3,8 +3,9 @@ import { useThemeStore } from '../store/useThemeStore';
 import { useOrgStore } from '../store/useOrgStore';
 import { SketchPicker } from 'react-color';
 import { ChevronDown, ChevronRight, Pencil, Trash2 } from 'lucide-react';
+import type { Theme } from '../domain/types';
 
-const ColorPickerPopover = ({ color, onChange }) => {
+const ColorPickerPopover = ({ color, onChange }: { color: string; onChange: (hex: string) => void }) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <div style={{ position: 'relative' }}>
@@ -26,16 +27,28 @@ const ColorPickerPopover = ({ color, onChange }) => {
     );
 };
 
-const NumberInput = ({ label, name, value, onChange, min = -20, max = 20, unit = 'px' }) => {
+type ThemeChange = { target: { name: string; value: string } };
+
+interface NumberInputProps {
+    label: string;
+    name: keyof Theme;
+    value: string;
+    onChange: (e: ThemeChange) => void;
+    min?: number;
+    max?: number;
+    unit?: string;
+}
+
+const NumberInput = ({ label, name, value, onChange, min = -20, max = 20, unit = 'px' }: NumberInputProps) => {
     // Strip unit for viewing, but keep it for saving
     const numValue = parseInt(value, 10) || 0;
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let val = parseInt(e.target.value, 10);
         if (isNaN(val)) val = 0;
         if (val < min) val = min;
         if (val > max) val = max;
-        onChange({ target: { name, value: unit ? `${val}${unit}` : val } });
+        onChange({ target: { name, value: `${val}${unit}` } });
     };
 
     return (
@@ -54,7 +67,7 @@ const NumberInput = ({ label, name, value, onChange, min = -20, max = 20, unit =
     );
 };
 
-const Accordion = ({ title, defaultOpen = false, children }) => {
+const Accordion = ({ title, defaultOpen = false, children }: { title: string; defaultOpen?: boolean; children: React.ReactNode }) => {
     const [isOpen, setIsOpen] = useState(defaultOpen);
     return (
         <div style={{ borderBottom: '1px solid #e2e8f0' }}>
@@ -78,9 +91,9 @@ const EditorSidebar = () => {
     const { theme, updateTheme, applyPreset, customThemes, deleteCustomTheme } = useThemeStore();
     const { verticals, divisions, openModal } = useOrgStore();
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: ThemeChange | React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
-        updateTheme({ [name]: value });
+        updateTheme({ [name]: value } as Partial<Theme>);
     };
 
     const handleSaveTheme = () => {
@@ -137,9 +150,9 @@ const EditorSidebar = () => {
 
                         {customThemes.length === 0 && <div style={{ fontSize: '12px', color: 'var(--font-color-sub)', fontStyle: 'italic' }}>No custom presets saved.</div>}
                         {customThemes.map(t => (
-                            <div key={t.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div key={t.id ?? t.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <button
-                                    onClick={() => applyPreset(t.id)}
+                                    onClick={() => t.id && applyPreset(t.id)}
                                     style={{
                                         flex: 1, padding: '8px', cursor: 'pointer', textAlign: 'left',
                                         backgroundColor: theme.id === t.id ? 'var(--input-focus)' : 'var(--bg-color)',
@@ -151,7 +164,7 @@ const EditorSidebar = () => {
                                     {t.name}
                                 </button>
                                 <button
-                                    onClick={() => deleteCustomTheme(t.id)}
+                                    onClick={() => t.id && deleteCustomTheme(t.id)}
                                     style={{ padding: '8px', cursor: 'pointer', backgroundColor: 'var(--bg-color)', border: '1px solid var(--card-border-color)', borderLeft: 'none', borderRadius: '0 4px 4px 0', color: '#dc3545' }}>
                                     <Trash2 size={14} />
                                 </button>

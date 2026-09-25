@@ -1,6 +1,6 @@
-import React from 'react';
+import type React from 'react';
 
-const ExportModal = ({ onClose }) => {
+const ExportModal = ({ onClose }: { onClose: () => void }) => {
     const handleExportSolid = () => {
         if (window.exportChart) window.exportChart(false);
         onClose();
@@ -41,7 +41,7 @@ const ExportModal = ({ onClose }) => {
     );
 };
 
-const btnStylePrimary = {
+const btnStylePrimary: React.CSSProperties = {
     padding: '10px 16px',
     borderRadius: '6px',
     border: 'none',
@@ -51,7 +51,7 @@ const btnStylePrimary = {
     textAlign: 'center'
 };
 
-const btnStyleSecondary = {
+const btnStyleSecondary: React.CSSProperties = {
     padding: '10px 16px',
     borderRadius: '6px',
     border: '1px solid var(--card-border-color)',

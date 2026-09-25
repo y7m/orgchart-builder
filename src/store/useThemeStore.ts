@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { Theme } from '../domain/types';
 
-const defaultThemes = {
+export const defaultThemes: Record<'modern' | 'brutalist', Theme> = {
     modern: {
         name: 'Modern Soft',
         cardRadius: '12px',
@@ -82,7 +83,19 @@ const defaultThemes = {
     }
 };
 
-export const useThemeStore = create(
+interface ThemeState {
+    theme: Theme;
+    customThemes: Theme[];
+    applyPreset: (presetId: string) => void;
+    saveCustomTheme: (name: string) => void;
+    deleteCustomTheme: (id: string) => void;
+    updateTheme: (updates: Partial<Theme>) => void;
+    resetTheme: () => void;
+}
+
+export const THEME_STORAGE_KEY = 'orgchart-theme-storage';
+
+export const useThemeStore = create<ThemeState>()(
     persist(
         (set) => ({
             theme: defaultThemes.modern, // Start with modern
@@ -90,7 +103,7 @@ export const useThemeStore = create(
 
             // Actions
             applyPreset: (presetId) => set((state) => {
-                const defaultT = defaultThemes[presetId];
+                const defaultT = presetId in defaultThemes ? defaultThemes[presetId as keyof typeof defaultThemes] : undefined;
                 if (defaultT) return { theme: defaultT };
                 const customT = state.customThemes.find(t => t.id === presetId);
                 // Return a copy so editing doesn't mutate the saved theme
@@ -99,7 +112,7 @@ export const useThemeStore = create(
             }),
 
             saveCustomTheme: (name) => set((state) => ({
-                customThemes: [...state.customThemes, { ...state.theme, name, id: 't_' + Date.now() }]
+                customThemes: [...state.customThemes, { ...state.theme, name, id: crypto.randomUUID() }]
             })),
 
             deleteCustomTheme: (id) => set((state) => ({
@@ -113,7 +126,7 @@ export const useThemeStore = create(
             resetTheme: () => set({ theme: defaultThemes.modern }),
         }),
         {
-            name: 'orgchart-theme-storage', // Saves to localStorage
+            name: THEME_STORAGE_KEY,
         }
     )
 );

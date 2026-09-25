@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { useOrgStore } from '../store/useOrgStore';
 
 const TopBar = () => {
@@ -38,7 +38,7 @@ const TopBar = () => {
     );
 };
 
-const btnStyle = {
+const btnStyle: React.CSSProperties = {
     padding: '8px 12px',
     cursor: 'pointer',
     backgroundColor: 'var(--bg-color)',

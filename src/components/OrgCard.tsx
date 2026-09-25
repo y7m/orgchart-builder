@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type React from 'react';
+import type { OrgNode } from './Canvas';
 import { useOrgStore } from '../store/useOrgStore';
 import { Pencil } from 'lucide-react';
 
-const OrgCard = ({ node, x, y, scale = 1 }) => {
+interface Props { node: OrgNode; x: number; y: number; scale?: number }
+
+const OrgCard = ({ node, x, y, scale = 1 }: Props) => {
     const { verticals, divisions, updateEmployeeManager, toggleCollapseNode, collapsedNodes, openModal } = useOrgStore();
 
-    const emp = node.data;
+    const emp = node.data.employee!;
     const division = divisions.find(d => d.id === emp.divisionId);
 
     // Custom HTML-based Drag & Drop state
@@ -15,20 +19,20 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     const hasChildren = !!(node.children || node._children);
-    const isCollapsed = collapsedNodes.includes(node.id);
+    const isCollapsed = collapsedNodes.includes(emp.id);
 
     // Map subtopic IDs to real Vertical objects to grab their colored bullets
     const renderedSubtopics = emp.subtopics?.map(subId => {
-        let parentVert = null;
+        let parentVert: (typeof verticals)[number] | null = null;
         let subText = '';
 
-        verticals.forEach(v => {
+        for (const v of verticals) {
             const match = v.subtopics?.find(s => s.id === subId);
             if (match) {
                 parentVert = v;
                 subText = match.text;
             }
-        });
+        }
 
         if (!parentVert) return null;
 
@@ -44,17 +48,18 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
         );
     }).filter(Boolean);
 
-    const handlePointerDown = (e) => {
+    const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+        const t = e.target as Element;
         // Prevent drag on buttons
-        if (e.target.closest('button') || e.target.closest('svg')) return;
+        if (t.closest('button') || t.closest('svg')) return;
 
-        e.target.setPointerCapture(e.pointerId);
+        t.setPointerCapture?.(e.pointerId);
         setIsDragging(true);
         setDragOffset({ x: e.clientX, y: e.clientY });
         setDragPos({ x, y });
     };
 
-    const handlePointerMove = (e) => {
+    const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
         if (!isDragging) return;
         // Divide by zoom scale to match SVG/Canvas coordinate space
         const dx = (e.clientX - dragOffset.x) / scale;
@@ -66,13 +71,14 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
         });
     };
 
-    const handlePointerUp = (e) => {
+    const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
         if (!isDragging) return;
-        e.target.releasePointerCapture(e.pointerId);
+        const t = e.target as Element;
+        t.releasePointerCapture?.(e.pointerId);
         setIsDragging(false);
 
         // Hide self temporarily so elementFromPoint hits what's underneath
-        const cardEl = e.target.closest('.org-card-container');
+        const cardEl = t.closest<HTMLElement>('.org-card-container');
         if (cardEl) {
             const oldDisplay = cardEl.style.display;
             cardEl.style.display = 'none';
@@ -83,8 +89,8 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
 
             if (dropCard) {
                 const targetId = dropCard.getAttribute('data-empid');
-                if (targetId && targetId !== node.id) {
-                    updateEmployeeManager(node.id, targetId);
+                if (targetId && targetId !== emp.id) {
+                    updateEmployeeManager(emp.id, targetId);
                 }
             }
 
@@ -95,7 +101,7 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
     return (
         <div
             className="org-card-container org-card-dropzone"
-            data-empid={node.id}
+            data-empid={emp.id}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
@@ -130,6 +136,11 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
 
             <div style={{ fontWeight: 800, fontSize: 'var(--name-font-size, 14px)', textAlign: 'center', marginBottom: '2px', color: 'var(--main-color)' }}>{emp.name}</div>
             <div style={{ fontWeight: 600, fontSize: 'var(--title-font-size, 11px)', textAlign: 'center', marginBottom: '12px', color: 'var(--font-color-sub)', textTransform: 'uppercase' }}>{emp.title}</div>
+            {(emp.team || emp.location) && (
+                <div style={{ fontSize: 'var(--div-font-size, 10px)', textAlign: 'center', marginTop: '-8px', marginBottom: '10px', color: 'var(--font-color-sub)' }}>
+                    {[emp.team, emp.location].filter(Boolean).join(' · ')}
+                </div>
+            )}
 
             {division && (
                 <div style={{ fontSize: 'var(--div-font-size, 10px)', fontWeight: 800, color: division.color, textAlign: 'center', marginBottom: '10px', padding: '2px', borderBottom: `1px solid var(--card-border-color)` }}>
@@ -143,7 +154,7 @@ const OrgCard = ({ node, x, y, scale = 1 }) => {
 
             {hasChildren && isHovered && (
                 <button
-                    onClick={(e) => { e.stopPropagation(); toggleCollapseNode(node.id); }}
+                    onClick={(e) => { e.stopPropagation(); toggleCollapseNode(emp.id); }}
                     style={{ position: 'absolute', bottom: '-12px', left: 'calc(50% - 12px)', width: '24px', height: '24px', backgroundColor: 'var(--bg-color)', border: '1px solid var(--card-border-color)', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: 'bold', color: 'var(--font-color)' }}>
                     {isCollapsed ? '+' : '-'}
                 </button>

@@ -1,13 +1,41 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useThemeStore } from './store/useThemeStore';
 import { useOrgStore } from './store/useOrgStore';
 import EditorSidebar from './components/EditorSidebar';
 import Canvas from './components/Canvas';
 import TopBar from './components/TopBar';
 import { EmployeeModal, DivisionModal, VerticalModal, ConfirmModal, PromptModal } from './components/Modals';
+import { resetAllData } from './store/reset';
 import ExportModal from './components/ExportModal';
 import ImportModal from './components/ImportModal';
 import * as htmlToImage from 'html-to-image';
+
+declare global {
+  interface Window {
+    exportChart?: (transparent?: boolean) => Promise<void>;
+  }
+}
+
+const DeleteEmployeeConfirm = ({ onClose }: { onClose: () => void }) => {
+  const [error, setError] = useState('');
+  const { editingId, employees } = useOrgStore();
+  const emp = employees.find(e => e.id === editingId);
+  const reports = employees.filter(e => e.managerId === editingId).length;
+  return (
+    <ConfirmModal
+      title="Delete Employee"
+      message={`Delete ${emp?.name ?? 'this employee'}?${reports ? ` Their ${reports} direct report(s) will move up to their manager.` : ''}`}
+      isDestructive
+      error={error}
+      onClose={onClose}
+      onConfirm={() => {
+        if (!editingId) return onClose();
+        const r = useOrgStore.getState().deleteEmployee(editingId);
+        if (r.ok) onClose(); else setError(r.error);
+      }}
+    />
+  );
+};
 
 function App() {
   const { theme } = useThemeStore();
@@ -59,7 +87,7 @@ function App() {
     const fontName = theme.fontFamily.split(',')[0].replace(/['"]/g, '').trim();
     if (fontName) {
       const linkId = 'dynamic-google-font';
-      let linkEl = document.getElementById(linkId);
+      let linkEl = document.getElementById(linkId) as HTMLLinkElement | null;
       if (!linkEl) {
         linkEl = document.createElement('link');
         linkEl.id = linkId;
@@ -80,10 +108,12 @@ function App() {
       await new Promise(r => setTimeout(r, 100));
 
       const target = document.getElementById('canvas-container');
-      if (!target) return;
 
       try {
+        if (!target) return;
         const svgElement = target.querySelector('svg');
+        const inner = target.querySelector('div');
+        if (!inner) return;
         let bbox = { x: 0, y: 0, width: 600, height: 600 };
 
         // Grab D3 Line bounds to frame the whole tree accurately
@@ -100,7 +130,7 @@ function App() {
         const offsetX = -bbox.x + 800;
         const offsetY = -bbox.y + 400;
 
-        const dataUrl = await htmlToImage.toPng(target.querySelector('div'), {
+        const dataUrl = await htmlToImage.toPng(inner, {
           backgroundColor: transparent ? 'rgba(0,0,0,0)' : theme.bgColor,
           pixelRatio: 2,
           width: paddedWidth,
@@ -145,9 +175,11 @@ function App() {
       {activeModal === 'import' && <ImportModal onClose={closeModal} />}
 
       {activeModal === 'promptTheme' && <PromptModal title="Save Custom Theme" placeholder="e.g. My Cool Theme" onClose={closeModal} onConfirm={(name) => { useThemeStore.getState().saveCustomTheme(name); closeModal(); }} />}
-      {activeModal === 'confirmReset' && <ConfirmModal title="Reset Data" message="Are you sure you want to reset all data and themes? This cannot be undone." isDestructive={true} onClose={closeModal} onConfirm={() => { useOrgStore.getState().resetToDefault(); useThemeStore.getState().resetTheme(); localStorage.removeItem('orgchart-data-storage'); localStorage.removeItem('orgchart-theme-storage'); closeModal(); }} />}
-      {activeModal === 'confirmDeleteDiv' && <ConfirmModal title="Delete Division" message="Are you sure you want to delete this division?" isDestructive={true} onClose={closeModal} onConfirm={() => { useOrgStore.getState().deleteDivision(useOrgStore.getState().editingId); closeModal(); }} />}
-      {activeModal === 'confirmDeleteVert' && <ConfirmModal title="Delete Vertical" message="Are you sure you want to delete this vertical?" isDestructive={true} onClose={closeModal} onConfirm={() => { useOrgStore.getState().deleteVertical(useOrgStore.getState().editingId); closeModal(); }} />}
+      {activeModal === 'confirmReset' && <ConfirmModal title="Reset Data" message="Are you sure you want to reset all data and themes? This cannot be undone." isDestructive={true} onClose={closeModal} onConfirm={() => { resetAllData(); closeModal(); }} />}
+      {activeModal === 'confirmDeleteDiv' && <ConfirmModal title="Delete Division" message="Are you sure you want to delete this division?" isDestructive={true} onClose={closeModal} onConfirm={() => { const id = useOrgStore.getState().editingId; if (id) useOrgStore.getState().deleteDivision(id); closeModal(); }} />}
+      {activeModal === 'confirmDeleteVert' && <ConfirmModal title="Delete Vertical" message="Are you sure you want to delete this vertical?" isDestructive={true} onClose={closeModal} onConfirm={() => { const id = useOrgStore.getState().editingId; if (id) useOrgStore.getState().deleteVertical(id); closeModal(); }} />}
+
+      {activeModal === 'confirmDeleteEmp' && <DeleteEmployeeConfirm onClose={closeModal} />}
 
       <Canvas />
       <EditorSidebar />
