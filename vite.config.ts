@@ -1,4 +1,5 @@
 /// <reference types="vitest/config" />
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -7,6 +8,15 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: process.env.VITE_BASE ?? '/',
+  build: {
+    rollupOptions: {
+      // redirect.html = MSAL v5 redirect bridge (bundled; no inline scripts)
+      input: {
+        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        redirect: fileURLToPath(new URL('./redirect.html', import.meta.url)),
+      },
+    },
+  },
   test: {
     environment: 'jsdom',
     setupFiles: ['./tests/setup.ts'],
