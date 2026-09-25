@@ -1,10 +1,8 @@
 import React from 'react';
 import { useOrgStore } from '../store/useOrgStore';
-import { useThemeStore } from '../store/useThemeStore';
 
 const TopBar = () => {
-    const { resetToDefault, openModal } = useOrgStore();
-    const { resetTheme } = useThemeStore();
+    const { openModal } = useOrgStore();
 
     return (
         <div style={{

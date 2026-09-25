@@ -75,7 +75,7 @@ const Accordion = ({ title, defaultOpen = false, children }) => {
 };
 
 const EditorSidebar = () => {
-    const { theme, updateTheme, applyPreset, customThemes, saveCustomTheme, deleteCustomTheme } = useThemeStore();
+    const { theme, updateTheme, applyPreset, customThemes, deleteCustomTheme } = useThemeStore();
     const { verticals, divisions, openModal } = useOrgStore();
 
     const handleInputChange = (e) => {

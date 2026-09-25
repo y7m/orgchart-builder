@@ -145,7 +145,7 @@ export const EmployeeModal = ({ onClose }) => {
 
 
 export const DivisionModal = ({ onClose }) => {
-    const { addDivision, updateDivision, deleteDivision, divisions, editingId } = useOrgStore();
+    const { addDivision, updateDivision, divisions, editingId } = useOrgStore();
     const editingDiv = editingId ? divisions.find(d => d.id === editingId) : null;
 
     const [name, setName] = useState(editingDiv?.name || '');
@@ -180,7 +180,7 @@ export const DivisionModal = ({ onClose }) => {
 };
 
 export const VerticalModal = ({ onClose }) => {
-    const { addVertical, updateVertical, deleteVertical, verticals, editingId } = useOrgStore();
+    const { addVertical, updateVertical, verticals, editingId } = useOrgStore();
     const editingVert = editingId ? verticals.find(v => v.id === editingId) : null;
 
     const [name, setName] = useState(editingVert?.name || '');

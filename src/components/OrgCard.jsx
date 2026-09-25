@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { useThemeStore } from '../store/useThemeStore';
 import { useOrgStore } from '../store/useOrgStore';
 import { Pencil } from 'lucide-react';
 
 const OrgCard = ({ node, x, y, scale = 1 }) => {
-    const { theme } = useThemeStore();
-    const { employees, verticals, divisions, updateEmployeeManager, toggleCollapseNode, collapsedNodes, openModal } = useOrgStore();
+    const { verticals, divisions, updateEmployeeManager, toggleCollapseNode, collapsedNodes, openModal } = useOrgStore();
 
     const emp = node.data;
     const division = divisions.find(d => d.id === emp.divisionId);

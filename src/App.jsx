@@ -8,7 +8,6 @@ import { EmployeeModal, DivisionModal, VerticalModal, ConfirmModal, PromptModal 
 import ExportModal from './components/ExportModal';
 import ImportModal from './components/ImportModal';
 import * as htmlToImage from 'html-to-image';
-import { useState } from 'react';
 
 function App() {
   const { theme } = useThemeStore();
