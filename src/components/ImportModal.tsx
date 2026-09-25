@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type React from 'react';
 import { ModalBase } from './Modals';
 import { useOrgStore } from '../store/useOrgStore';
+import { importCsv } from '../datasource/controller';
 import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import {
@@ -24,7 +25,6 @@ const COLUMNS: { field: ImportField; label: string }[] = [
 const PREVIEW_LIMIT = 200;
 
 const ImportModal = ({ onClose }: { onClose: () => void }) => {
-    const importEmployees = useOrgStore(s => s.importEmployees);
     const [step, setStep] = useState<1 | 2 | 3>(1); // 1: Upload, 2: Preview, 3: Report
     const [parsedData, setParsedData] = useState<ImportRow[]>([]);
     const [mapping, setMapping] = useState<HeaderMapping>({});
@@ -33,6 +33,7 @@ const ImportModal = ({ onClose }: { onClose: () => void }) => {
         useOrgStore.getState().employees.some(e => e.extId) ? 'merge' : 'replace');
     const [report, setReport] = useState<ImportReport | null>(null);
     const [error, setError] = useState('');
+    const [fileName, setFileName] = useState('');
 
     const accept = (raw: Record<string, unknown>[]) => {
         const { rows, mapping } = normalizeRows(raw);
@@ -46,6 +47,7 @@ const ImportModal = ({ onClose }: { onClose: () => void }) => {
         if (!file) return;
 
         setError('');
+        setFileName(file.name);
         const filename = file.name.toLowerCase();
 
         try {
@@ -77,13 +79,14 @@ const ImportModal = ({ onClose }: { onClose: () => void }) => {
         setParsedData(prev => prev.map((r, i) => (i === rowIndex ? { ...r, [field]: clampField(field, value) } : r)));
     };
 
-    const handleImport = () => {
+    const handleImport = async () => {
         const rows = parsedData.filter(r => r.name.trim());
         if (rows.length === 0) return setError('No valid data to import.');
         // A field counts as present if the file had the column or the user typed into it
         const effective: HeaderMapping = { ...mapping };
         for (const f of IMPORT_FIELDS) if (!effective[f] && rows.some(r => r[f])) effective[f] = f;
-        const r = importEmployees(rows, mode, effective);
+        const r = await importCsv(rows, mode, effective, fileName || undefined);
+        if (!r) return setError('Import failed.');
         if (hasImportWarnings(r)) {
             setReport(r);
             setStep(3);
@@ -103,10 +106,13 @@ const ImportModal = ({ onClose }: { onClose: () => void }) => {
     }
 
     return (
-        <ModalBase title="Mass Import Data" onClose={onClose} onSave={step === 2 ? handleImport : null} onSaveText="Import Data" error={error} width={step === 2 ? 900 : 400}>
+        <ModalBase title="Mass Import Data" onClose={onClose} onSave={step === 2 ? () => void handleImport() : null} onSaveText="Import Data" error={error} width={step === 2 ? 900 : 400}>
             {step === 1 && (
                 <div style={{ padding: '20px', border: '2px dashed var(--card-border-color)', borderRadius: '8px', textAlign: 'center', backgroundColor: 'var(--bg-color)' }}>
                     <p style={{ fontSize: '14px', marginBottom: '15px' }}>Upload a .CSV, .XLSX, or .JSON file containing employee records.</p>
+                    <p style={{ fontSize: '12px', color: 'var(--font-color-sub)', marginBottom: '10px' }}>
+                        The file is read in your browser only and not kept after you close the tab. Use "Save project" to keep a copy.
+                    </p>
                     <p style={{ fontSize: '12px', color: 'var(--font-color-sub)', marginBottom: '20px' }}>
                         Recognized columns: ID, Name, Title, Manager (ID or name), Division, Subtopics, Email, Location, Team.
                     </p>

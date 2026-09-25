@@ -8,6 +8,7 @@ import { EmployeeModal, DivisionModal, VerticalModal, ConfirmModal, PromptModal 
 import { resetAllData } from './store/reset';
 import ExportModal from './components/ExportModal';
 import ImportModal from './components/ImportModal';
+import { SaveProjectModal } from './components/ProjectModals';
 import * as htmlToImage from 'html-to-image';
 
 declare global {
@@ -173,9 +174,10 @@ function App() {
       {activeModal === 'vertical' && <VerticalModal onClose={closeModal} />}
       {activeModal === 'export' && <ExportModal onClose={closeModal} />}
       {activeModal === 'import' && <ImportModal onClose={closeModal} />}
+      {activeModal === 'saveProject' && <SaveProjectModal onClose={closeModal} />}
 
       {activeModal === 'promptTheme' && <PromptModal title="Save Custom Theme" placeholder="e.g. My Cool Theme" onClose={closeModal} onConfirm={(name) => { useThemeStore.getState().saveCustomTheme(name); closeModal(); }} />}
-      {activeModal === 'confirmReset' && <ConfirmModal title="Reset Data" message="Are you sure you want to reset all data and themes? This cannot be undone." isDestructive={true} onClose={closeModal} onConfirm={() => { resetAllData(); closeModal(); }} />}
+      {activeModal === 'confirmReset' && <ConfirmModal title="Reset Data" message="Reset the chart to sample data and themes to default? People loaded in this session are cleared (save a project file first to keep them)." isDestructive={true} onClose={closeModal} onConfirm={() => { resetAllData(); closeModal(); }} />}
       {activeModal === 'confirmDeleteDiv' && <ConfirmModal title="Delete Division" message="Are you sure you want to delete this division?" isDestructive={true} onClose={closeModal} onConfirm={() => { const id = useOrgStore.getState().editingId; if (id) useOrgStore.getState().deleteDivision(id); closeModal(); }} />}
       {activeModal === 'confirmDeleteVert' && <ConfirmModal title="Delete Vertical" message="Are you sure you want to delete this vertical?" isDestructive={true} onClose={closeModal} onConfirm={() => { const id = useOrgStore.getState().editingId; if (id) useOrgStore.getState().deleteVertical(id); closeModal(); }} />}
 
